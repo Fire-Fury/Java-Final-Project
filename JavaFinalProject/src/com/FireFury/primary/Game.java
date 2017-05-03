@@ -5,6 +5,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.FireFury.Screens.Screen;
+
 public class Game extends Canvas implements Runnable{
 	private static final long serialVersionUID = 1L;
 	
@@ -15,6 +17,8 @@ public class Game extends Canvas implements Runnable{
 	private boolean isRunning = false;
 	
 	private JFrame frame;
+	
+	private Screen screen;
 	
 	public Game()
 	{
@@ -36,7 +40,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public void update()
 	{
-		System.out.println("Is working!");
+		
 	}
 	
 	public void render()
