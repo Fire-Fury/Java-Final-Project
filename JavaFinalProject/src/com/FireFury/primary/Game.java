@@ -36,7 +36,7 @@ public class Game extends Canvas implements Runnable{
 	
 	public void update()
 	{
-		
+		System.out.println("Is working!");
 	}
 	
 	public void render()
