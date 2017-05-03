@@ -23,7 +23,7 @@ public class Game extends Canvas implements Runnable{
 		
 		frame = new JFrame();
 		frame.setResizable(false);
-		frame.setTitle("[Name of Game]");
+		frame.setTitle("Discount Discounted Dwarf Fortress");
 		frame.add(this);
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
