@@ -18,7 +18,7 @@ public class Game extends Canvas implements Runnable{
 	
 	private JFrame frame;
 	
-	private Screen screen;
+	private Screen currentScreen;
 	
 	public Game()
 	{
@@ -40,7 +40,10 @@ public class Game extends Canvas implements Runnable{
 	
 	public void update()
 	{
-		
+		if(currentScreen != null)
+		{
+			
+		}
 	}
 	
 	public void render()

@@ -1,13 +1,12 @@
 package com.FireFury.Screens;
 
-import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-public abstract class Screen implements KeyListener{
+public interface Screen {
 
-	public void update() {}
+	void update();
 	
-	public void respondToUserInput() {}
+	void displayOutput();
 	
-	public void onEnter() {} //To be implemented in subclasses
-	
+	Screen respondToUserInput(KeyEvent key);
 }
