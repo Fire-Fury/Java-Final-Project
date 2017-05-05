@@ -72,11 +72,14 @@ public class Game extends Canvas implements Runnable {
 			g.fillRect(0, 0, getWidth(), getHeight()); // Remove the scale for
 														// epilepsy attack.
 
+			if(currentScreen != null)
+			{
+				currentScreen.render(g);
+			}
+			
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Sans-Serif", Font.PLAIN, 24));
 			g.drawString("FPS:" + lastFPS, 0, 20);
-			
-			g.drawImage(Assets.testImage, 100, 100, null);
 		}
 
 		g.dispose();
