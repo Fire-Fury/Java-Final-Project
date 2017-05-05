@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -14,7 +16,7 @@ import com.FireFury.Screens.Screen;
 
 import Graphics.Assets;
 
-public class Game extends Canvas implements Runnable {
+public class Game extends Canvas implements Runnable, KeyListener {
 	private static final long serialVersionUID = 1L;
 
 	public static int width = 360, height = width / 16 * 9; // 16:9 resolution
@@ -51,6 +53,11 @@ public class Game extends Canvas implements Runnable {
 
 	public void update() {
 
+		if(currentScreen != null)
+		{
+			currentScreen.update();
+		}
+		
 	}
 
 	public void render() {
@@ -69,14 +76,14 @@ public class Game extends Canvas implements Runnable {
 		{
 			// DRAW EVERYTHING HERE;
 			g.setColor(new Color(90, 30, 100));
-			g.fillRect(0, 0, getWidth(), getHeight()); // Remove the scale for
-														// epilepsy attack.
+			g.fillRect(0, 0, getWidth(), getHeight()); // Remove the scale for epilepsy attack.
 
 			if(currentScreen != null)
 			{
 				currentScreen.render(g);
 			}
 			
+			//FPS Counter
 			g.setColor(Color.WHITE);
 			g.setFont(new Font("Sans-Serif", Font.PLAIN, 24));
 			g.drawString("FPS:" + lastFPS, 0, 20);
@@ -146,5 +153,16 @@ public class Game extends Canvas implements Runnable {
 	public int getWidth() {
 		return width * scale;
 	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		currentScreen = currentScreen.respondToUserInput(e);
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {}
+
+	@Override
+	public void keyTyped(KeyEvent e) {}
 
 }
