@@ -12,6 +12,7 @@ import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
+import com.FireFury.Screens.LoadingScreen;
 import com.FireFury.Screens.Screen;
 
 import Graphics.Assets;
@@ -31,7 +32,7 @@ public class Game extends Canvas implements Runnable, KeyListener {
 
 	private int lastFPS = 0;
 
-	private BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
+	//private BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
 	public Game() {
 		Dimension size = new Dimension(width * scale, height * scale);
@@ -47,7 +48,6 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		frame.setVisible(true);
 		
 		Assets.init();
-
 		start();
 	}
 
@@ -146,11 +146,11 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	}
 
 	// Getters Setters and Helpers
-	public int getHeight() {
+	public static int getGameHeight() {
 		return height * scale;
 	}
 
-	public int getWidth() {
+	public static int getGameWidth() {
 		return width * scale;
 	}
 
