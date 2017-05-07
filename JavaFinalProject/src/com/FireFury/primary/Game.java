@@ -7,17 +7,20 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
 import javax.swing.JFrame;
 
 import com.FireFury.Screens.LoadingScreen;
+import com.FireFury.Screens.MenuScreen;
 import com.FireFury.Screens.Screen;
 
 import Graphics.Assets;
 
-public class Game extends Canvas implements Runnable, KeyListener {
+public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 	private static final long serialVersionUID = 1L;
 
 	public static int width = 360, height = width / 16 * 9; // 16:9 resolution
@@ -47,6 +50,9 @@ public class Game extends Canvas implements Runnable, KeyListener {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		
+		frame.addKeyListener(this);
+		
+		currentScreen = new MenuScreen();
 		Assets.init();
 		start();
 	}
@@ -158,11 +164,20 @@ public class Game extends Canvas implements Runnable, KeyListener {
 	public void keyPressed(KeyEvent e) {
 		currentScreen = currentScreen.respondToUserInput(e);
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent e) {}
-
 	@Override
 	public void keyTyped(KeyEvent e) {}
+	@Override
+	public void mouseClicked(MouseEvent e) { }
+	@Override
+	public void mouseEntered(MouseEvent e) { }
+	@Override
+	public void mouseExited(MouseEvent e) { }
+	@Override
+	public void mousePressed(MouseEvent e) { }
+	@Override
+	public void mouseReleased(MouseEvent ae) { }
 
 }
