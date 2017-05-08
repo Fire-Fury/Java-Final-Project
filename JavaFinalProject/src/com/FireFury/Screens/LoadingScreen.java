@@ -57,7 +57,7 @@ public class LoadingScreen implements Screen{
 	
 	public boolean after4Seconds()
 	{
-		if(System.currentTimeMillis() - 4000 >= timeStart)
+		if(System.currentTimeMillis() - 500 >= timeStart)
 		{
 			return true;
 		}
