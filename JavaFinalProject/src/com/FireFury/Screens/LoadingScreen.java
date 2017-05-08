@@ -28,6 +28,7 @@ public class LoadingScreen implements Screen{
 		g.setFont(new Font("Comic-Sans", Font.PLAIN, 24));
 		g.drawString("Loading " + dots, Game.getGameWidth()/2, Game.getGameHeight()/2 );
 		
+		
 	}
 
 	private String getDots()
@@ -54,13 +55,13 @@ public class LoadingScreen implements Screen{
 		return this;
 	}
 	
-	public Screen afterThreeSeconds()
+	public boolean after4Seconds()
 	{
-		if(System.currentTimeMillis() - 3000 >= timeStart)
+		if(System.currentTimeMillis() - 4000 >= timeStart)
 		{
-			return new MenuScreen();
+			return true;
 		}
-		return this;
+		return false;
 	}
 
 }

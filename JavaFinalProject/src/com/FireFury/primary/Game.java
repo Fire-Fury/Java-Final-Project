@@ -52,11 +52,14 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		
 		frame.addKeyListener(this);
 		
-		currentScreen = new MenuScreen();
+		currentScreen = new LoadingScreen();
+
 		Assets.init();
 		start();
 	}
 
+	
+	
 	public void update() {
 
 		if(currentScreen != null)
@@ -83,7 +86,12 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			// DRAW EVERYTHING HERE;
 			g.setColor(new Color(90, 30, 100));
 			g.fillRect(0, 0, getWidth(), getHeight()); // Remove the scale for epilepsy attack.
-
+			
+			if(currentScreen.after4Seconds())
+			{
+				currentScreen = new MenuScreen();
+			}
+				
 			if(currentScreen != null)
 			{
 				currentScreen.render(g);

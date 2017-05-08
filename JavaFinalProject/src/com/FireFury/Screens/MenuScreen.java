@@ -33,4 +33,10 @@ public class MenuScreen implements Screen{
 		}
 	}
 
+	@Override
+	public boolean after4Seconds() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
