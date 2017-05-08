@@ -5,9 +5,18 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 
+import com.FireFury.Tiles.Tile;
+import com.FireFury.Worlds.World;
 import com.FireFury.primary.Game;
 
 public class PlayScreen implements Screen{
+	
+	private World world;
+	
+	public PlayScreen()
+	{
+		world = new World("res/worlds/world1.txt");
+	}
 
 	@Override
 	public void update() {
@@ -16,11 +25,13 @@ public class PlayScreen implements Screen{
 
 	@Override
 	public void render(Graphics g) {
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, Game.getGameWidth(), Game.getGameHeight());
-		g.setFont(new Font("Sans-Serif", Font.PLAIN, 24));
-		g.setColor(Color.WHITE);
-		g.drawString("You are having fun!" , Game.getGameWidth()/2, Game.getGameHeight()/2);
+		for(int i = 0; i < world.getWidth(); i++)
+		{
+			for(int j = 0; j < world.getHeight(); j++)
+			{
+				world.tileAt(i, j).render(g, i*Tile.TILEWIDTH, j*Tile.TILEHEIGHT);
+			}
+		}
 		
 	}
 

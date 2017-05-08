@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 import com.FireFury.primary.Game;
 
 public class LoadingScreen implements Screen{
+	
+	public long timeStart = System.currentTimeMillis(); 
 
 	@Override
 	public void update() {
@@ -49,6 +51,15 @@ public class LoadingScreen implements Screen{
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		// TODO Auto-generated method stub
+		return this;
+	}
+	
+	public Screen afterThreeSeconds()
+	{
+		if(System.currentTimeMillis() - 3000 >= timeStart)
+		{
+			return new MenuScreen();
+		}
 		return this;
 	}
 
