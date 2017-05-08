@@ -14,6 +14,7 @@ public class Assets {
 	public static BufferedImage grassLowerLeftCorner;
 	public static BufferedImage grassLowerCentralSide;
 	public static BufferedImage grassLowerRightCorner;
+	public static BufferedImage nullTile;
 	
 	public static void init()
 	{
@@ -28,6 +29,8 @@ public class Assets {
 		grassLowerLeftCorner = sheetA.crop(0, 2*LENGTH, LENGTH, LENGTH);
 		grassLowerCentralSide = sheetA.crop(1*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		grassLowerRightCorner = sheetA.crop(2*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		
+		nullTile = sheetA.crop(4*LENGTH, 0, LENGTH, LENGTH);
 		
 	}
 }

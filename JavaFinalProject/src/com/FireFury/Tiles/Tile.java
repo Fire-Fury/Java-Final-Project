@@ -14,6 +14,7 @@ public class Tile {
 	private BufferedImage texture;
 	
 	public static Tile grassCenterCenterCentral = new GrassCentralCentralCenter(0);
+	public static Tile nullTile = new NullTile(1);
 	
 	public Tile(BufferedImage texture, int id)
 	{
@@ -47,7 +48,8 @@ public class Tile {
 		switch(id)
 		{
 		case 0: return grassCenterCenterCentral;
-		default: return null;
+		case 1: return nullTile;
+		default: return nullTile;
 		}
 	}
 
