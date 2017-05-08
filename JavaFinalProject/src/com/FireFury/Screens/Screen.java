@@ -10,7 +10,6 @@ public interface Screen {
 	void render(Graphics g);
 	
 	Screen respondToUserInput(KeyEvent key);
-	
 
 	boolean after4Seconds();
 }
