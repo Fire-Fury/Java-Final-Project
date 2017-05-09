@@ -98,9 +98,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			}
 			
 			//FPS Counter
-			g.setColor(Color.WHITE);
-			g.setFont(new Font("Sans-Serif", Font.PLAIN, 24));
-			g.drawString("FPS:" + lastFPS, 0, 20);
+			//g.setColor(Color.WHITE);
+			//g.setFont(new Font("Sans-Serif", Font.PLAIN, 24));
+			//g.drawString("FPS:" + lastFPS, 0, 20);
 		}
 
 		g.dispose();
