@@ -34,6 +34,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private Screen currentScreen;
 
 	private int lastFPS = 0;
+	
+	private boolean keysPressed[] = new boolean[256];
 
 	//private BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
@@ -65,6 +67,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		if(currentScreen != null)
 		{
 			currentScreen.update();
+			currentScreen = currentScreen.respondToUserInput(keysPressed);
 		}
 		
 	}
@@ -127,32 +130,45 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void run() {
 
 		int framesPerSec = 60;
-		double timePerUpdate = 1000000000 / framesPerSec;
+		int updatesPerSec = 1000;
+		
+		double timePerRender = 1000000000 / framesPerSec;
+		double timePerUpdate = 1000000000 / updatesPerSec;
 		long lastTime = System.nanoTime();
 		long currentTime;
 		double delta = 0;
+		double delta2 = 0;
 
 		int updates = 0;
+		int updates2 = 0;
 		long timer = 0;
 
 		while (isRunning) {
 			currentTime = System.nanoTime();
-			delta += (currentTime - lastTime) / timePerUpdate;
+			delta += (currentTime - lastTime) / timePerRender;
+			delta2 += (currentTime - lastTime) / timePerUpdate;
 			timer += (currentTime - lastTime);
 			lastTime = currentTime;
 
-			if (delta >= 1) {
+			if(delta2 >= 1)
+			{
 				update();
+				updates2++;
+				delta2--;
+			}
+			
+			if (delta >= 1) {
 				render();
 				updates++;
 				delta--;
 			}
 
 			if (timer >= 1000000000) {
-				System.out.println("Fps: " + updates);
+				System.out.println("Fps: " + updates + "    Updates: " + updates2);
 				lastFPS = updates;
 				timer = 0;
 				updates = 0;
+				updates2 = 0;
 			}
 
 		}
@@ -170,11 +186,59 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		currentScreen = currentScreen.respondToUserInput(e);
+		if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		{
+			keysPressed[KeyEvent.VK_ENTER] = true;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		{
+			keysPressed[KeyEvent.VK_ESCAPE] = true;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			keysPressed[KeyEvent.VK_UP] = true;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			keysPressed[KeyEvent.VK_DOWN] = true;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			keysPressed[KeyEvent.VK_LEFT] = true;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			keysPressed[KeyEvent.VK_RIGHT] = true;
+		}
 	}
 	
 	@Override
-	public void keyReleased(KeyEvent e) {}
+	public void keyReleased(KeyEvent e) {
+		if(e.getKeyCode() == KeyEvent.VK_ENTER)
+		{
+			keysPressed[KeyEvent.VK_ENTER] = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_ESCAPE)
+		{
+			keysPressed[KeyEvent.VK_ESCAPE] = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_UP)
+		{
+			keysPressed[KeyEvent.VK_UP] = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			keysPressed[KeyEvent.VK_DOWN] = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_LEFT)
+		{
+			keysPressed[KeyEvent.VK_LEFT] = false;
+		}
+		else if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		{
+			keysPressed[KeyEvent.VK_RIGHT] = false;
+		}
+	}
 	@Override
 	public void keyTyped(KeyEvent e) {}
 	@Override

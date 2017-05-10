@@ -32,7 +32,7 @@ public class GameCamera {
 	
 	public void moveBy(float dx, float dy)
 	{
-		xOffset +=  dx;
+		xOffset += dx;
 		yOffset += dy;
 	}
 	

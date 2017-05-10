@@ -48,15 +48,27 @@ public class PlayScreen implements Screen{
 	}
 
 	@Override
-	public Screen respondToUserInput(KeyEvent key) {
+	public Screen respondToUserInput(boolean[] keysPressed) {
 		
-		switch(key.getKeyCode())
+		if(keysPressed[KeyEvent.VK_ESCAPE])
 		{
-		case KeyEvent.VK_ESCAPE: return new MenuScreen();
-		case KeyEvent.VK_UP: camera.moveBy(0, camera.getMoveSpeed()); break;
-		case KeyEvent.VK_DOWN: camera.moveBy(0, -camera.getMoveSpeed()); break;
-		case KeyEvent.VK_LEFT: camera.moveBy(camera.getMoveSpeed(), 0); break;
-		case KeyEvent.VK_RIGHT: camera.moveBy(-camera.getMoveSpeed(), 0); break;
+			return new MenuScreen();
+		}
+		else if(keysPressed[KeyEvent.VK_UP])
+		{
+			camera.moveBy(0, 1);
+		}
+		else if(keysPressed[KeyEvent.VK_DOWN])
+		{
+			camera.moveBy(0, -1);
+		}
+		else if(keysPressed[KeyEvent.VK_LEFT])
+		{
+			camera.moveBy(1, 0);
+		}
+		else if(keysPressed[KeyEvent.VK_RIGHT])
+		{
+			camera.moveBy(-1, 0);
 		}
 		
 		return this;

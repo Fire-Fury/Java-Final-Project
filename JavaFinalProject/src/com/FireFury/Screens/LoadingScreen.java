@@ -50,7 +50,7 @@ public class LoadingScreen implements Screen{
 	}
 
 	@Override
-	public Screen respondToUserInput(KeyEvent key) {
+	public Screen respondToUserInput(boolean[] keysPressed) {
 		// TODO Auto-generated method stub
 		return this;
 	}
