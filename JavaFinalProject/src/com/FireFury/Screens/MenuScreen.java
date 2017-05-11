@@ -25,12 +25,13 @@ public class MenuScreen implements Screen{
 	}
 
 	@Override
-	public Screen respondToUserInput(KeyEvent key) {
-		switch(key.getKeyCode())
+	public Screen respondToUserInput(boolean[] keysPressed) {
+		if(keysPressed[KeyEvent.VK_ENTER])
 		{
-			case KeyEvent.VK_ENTER: return new PlayScreen(); 
-			default: return this;
+			return new PlayScreen();
 		}
+		
+		return this;
 	}
 
 	@Override
