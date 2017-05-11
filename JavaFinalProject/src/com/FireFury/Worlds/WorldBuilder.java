@@ -7,19 +7,23 @@ public class WorldBuilder {
 	public WorldBuilder() //random generation
 	{
 		heights[0][0] = Math.random();
-		heights[0][heights[0].length] = Math.random();
-		heights[heights.length][0] = Math.random();
-		heights[heights.length][heights[0].length] = Math.random();
-		DiamondStep(0, 0, heights[0].length, heights.length);
+		heights[0][heights[0].length-1] = Math.random();
+		heights[heights.length-1][0] = Math.random();
+		heights[heights.length-1][heights[0].length-1] = Math.random();
 	}
 	
 	public WorldBuilder(double a, double b, double c, double d) // seeded generation
 	{
 		heights[0][0] = a;
-		heights[0][heights[0].length] = c;
-		heights[heights.length][0] = b;
-		heights[heights.length][heights[0].length] = d;
-		DiamondStep(0, 0, heights[0].length, heights.length);
+		heights[0][heights[0].length-1] = c;
+		heights[heights.length-1][0] = b;
+		heights[heights.length-1][heights[0].length-1] = d;
+	}
+	
+	public double[][] buildWorld()
+	{
+		DiamondStep(0, 0, heights[0].length-1, heights.length-1);
+		return heights;
 	}
 	
 	private void SquareStep(double C, int rX, int rY, int lX, int lY)
@@ -31,7 +35,7 @@ public class WorldBuilder {
 			}
 			else
 			{
-				heights[rY][(rX+lX)/2] = avg4(heights[rY][rX], heights[rY][lX], heights[rY+(rY+lY)/2][(rX+lX)/2], C);
+				heights[rY][(rX+lX)/2] = avg4(heights[rY][rX], heights[rY][lX], heights[rY+Math.abs((lY-rY)/2)][(rX+lX)/2], C);
 			}
 			//R Side
 			if(rX == 0)
@@ -40,25 +44,25 @@ public class WorldBuilder {
 			}
 			else
 			{
-				heights[(rY+lY)/2][rX] = avg4(heights[rY][rX], heights[lY][rX], heights[(rY+lY)/2][rX-(rX+lX)/2], C);
+				heights[(rY+lY)/2][rX] = avg4(heights[rY][rX], heights[lY][rX], heights[(rY+lY)/2][rX-Math.abs((lX-rX)/2)], C);
 			}
 			//Bot
-			if(lY == heights.length)
+			if(lY == heights.length-1)
 			{
 				heights[lY][(rX+lX)/2] = avg3(heights[lY][rX], heights[lY][lX], C);
 			}
 			else
 			{
-				heights[lY][(rX+lX)/2] = avg4(heights[lY][rX], heights[lY][lX], heights[lY-(rY+lY)/2][(rX+lX)/2], C);
+				heights[lY][(rX+lX)/2] = avg4(heights[lY][rX], heights[lY][lX], heights[lY-Math.abs((lY-rY)/2)][(rX+lX)/2], C);
 			}
 			//L Side
-			if(lX == heights[0].length)
+			if(lX == heights[0].length-1)
 			{
 				heights[(rY+lY)/2][lX] = avg3(heights[rY][lX], heights[lY][lX], C);
 			}
 			else
 			{
-				heights[(rY+lY)/2][lX] = avg4(heights[rY][lX], heights[lY][lX], heights[(rY+lY)/2][lX+(rX+lX)/2], C);
+				heights[(rY+lY)/2][lX] = avg4(heights[rY][lX], heights[lY][lX], heights[(rY+lY)/2][lX+Math.abs((lX-rX)/2)], C);
 			}
 			DiamondStep(rX, rY, (rX+lX)/2, (rY+lY)/2);
 			DiamondStep((rX+lX)/2, rY, lX, (rY+lY)/2);
