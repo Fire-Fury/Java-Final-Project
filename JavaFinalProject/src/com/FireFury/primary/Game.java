@@ -36,6 +36,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	private int lastFPS = 0;
 	
 	private boolean keysPressed[] = new boolean[256];
+	
+	private static double delta = 0;
+	private static double delta2 = 0;
 
 	//private BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
@@ -136,8 +139,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		double timePerUpdate = 1000000000 / updatesPerSec;
 		long lastTime = System.nanoTime();
 		long currentTime;
-		double delta = 0;
-		double delta2 = 0;
 
 		int updates = 0;
 		int updates2 = 0;
@@ -182,6 +183,16 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	public static int getGameWidth() {
 		return width * scale;
+	}
+	
+	public static double getUpdateDeltaTime()
+	{
+		return delta;
+	}
+	
+	public static double getRenderDeltaTime()
+	{
+		return delta2;
 	}
 
 	@Override
