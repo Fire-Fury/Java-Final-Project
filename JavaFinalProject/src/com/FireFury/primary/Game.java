@@ -23,8 +23,7 @@ import Graphics.Assets;
 public class Game extends Canvas implements Runnable, KeyListener, MouseListener {
 	private static final long serialVersionUID = 1L;
 
-	public static int width = 360, height = width / 16 * 9; // 16:9 resolution
-	public static int scale = 4;
+	public static int width = 1600, height = width / 16 * 9; // 16:9 resolution
 
 	private Thread gameThread;
 	private boolean isRunning = false;
@@ -43,7 +42,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	//private BufferedImage image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_INT_RGB);
 
 	public Game() {
-		Dimension size = new Dimension(width * scale, height * scale);
+		Dimension size = new Dimension(width, height);
 		setPreferredSize(size);
 
 		frame = new JFrame();
@@ -53,6 +52,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocationRelativeTo(null);
+		frame.setFocusable(true);
 		frame.setVisible(true);
 		
 		frame.addKeyListener(this);
@@ -165,7 +165,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 			}
 
 			if (timer >= 1000000000) {
-				System.out.println("Fps: " + updates + "    Updates: " + updates2);
+				//System.out.println("Fps: " + updates + "    Updates: " + updates2);  //Console FPS Update printer
 				lastFPS = updates;
 				timer = 0;
 				updates = 0;
@@ -178,11 +178,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 
 	// Getters Setters and Helpers
 	public static int getGameHeight() {
-		return height * scale;
+		return height;
 	}
 
 	public static int getGameWidth() {
-		return width * scale;
+		return width;
 	}
 	
 	public static double getUpdateDeltaTime()
@@ -193,6 +193,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public static double getRenderDeltaTime()
 	{
 		return delta2;
+	}
+	
+	public Screen getCurrentScreen()
+	{
+		return currentScreen;
 	}
 
 	@Override

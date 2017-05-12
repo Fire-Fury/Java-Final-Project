@@ -5,10 +5,9 @@ import com.FireFury.Utils.Utils;
 
 public class World {
 
-	int width, height;
-	int spawnX, spawnY;
-	double[][] heightMap;
-	int[][] tiles;
+	private int width, height;
+	private int spawnX, spawnY;
+	private int[][] tiles;
 	
 	public World(String path)
 	{
@@ -17,7 +16,6 @@ public class World {
 	
 	public World(double[][] heightMap, int spawnX, int spawnY)
 	{
-		this.heightMap = heightMap;
 		this.width = heightMap[0].length;
 		this.height = heightMap.length;
 	}
@@ -46,7 +44,19 @@ public class World {
 	
 	public Tile tileAt(int x, int y)
 	{
-		return Tile.getTile(tiles[x][y]);
+		if(x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length)
+			return Tile.getTile(tiles[x][y]);
+		else
+			return null;
+	}
+	
+	public boolean tileExistsAt(int x, int y)
+	{
+		if(tileAt(x, y) == null)
+		{
+			return false;
+		}
+		return true;
 	}
 	
 	public int getWidth()
@@ -57,5 +67,15 @@ public class World {
 	public int getHeight()
 	{
 		return height;
+	}
+	
+	public int getPixelWidth()
+	{
+		return width*Tile.TILEWIDTH;
+	}
+	
+	public int getPixelHeight()
+	{
+		return height*Tile.TILEHEIGHT;
 	}
 }

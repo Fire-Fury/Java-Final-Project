@@ -1,6 +1,7 @@
 package com.FireFury.Tiles;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 public class Tile {
@@ -28,9 +29,9 @@ public class Tile {
 		
 	}
 	
-	public void render(Graphics g, int x, int y)
+	public void render(Graphics2D g2d, int x, int y)
 	{
-		g.drawImage(texture, x, y, TILEWIDTH, TILEHEIGHT, null);
+		g2d.drawImage(texture, x, y, TILEWIDTH, TILEHEIGHT, null);
 	}
 	
 	public int getId()
