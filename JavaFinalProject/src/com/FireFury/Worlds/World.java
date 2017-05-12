@@ -14,10 +14,11 @@ public class World {
 		loadWorld(path);
 	}
 	
-	public World(double[][] heightMap, int spawnX, int spawnY)
+	public World(int[][] tiles)
 	{
-		this.width = heightMap[0].length;
-		this.height = heightMap.length;
+		this.tiles = tiles;
+		width = tiles[0].length;
+		height = tiles.length;
 	}
 	
 	

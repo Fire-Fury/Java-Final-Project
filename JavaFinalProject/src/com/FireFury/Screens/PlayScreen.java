@@ -10,6 +10,7 @@ import com.FireFury.Tiles.Tile;
 import com.FireFury.Utils.GameCamera;
 import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
+import com.FireFury.Worlds.WorldBuilder;
 import com.FireFury.primary.Game;
 
 public class PlayScreen implements Screen{
@@ -17,11 +18,15 @@ public class PlayScreen implements Screen{
 	private World world;
 	private GameCamera camera;
 	private Handler handler;
+	private WorldBuilder worldBuilder;
 	
 	public PlayScreen()
 	{
 		handler = new Handler(this);
-		world = new World("res/worlds/world1.txt");
+		worldBuilder = new WorldBuilder(0.99, 0.99, 0.99, 0.99); // seeded generation
+		//worldBuilder = new WorldBuilder(0.3, 0.5, 0.9, 0); // seeded generation
+		// Seed 12345 : largely an ocean world, not too interesting
+		world = worldBuilder.createWorld().build();
 		handler.setWorld(world);
 		camera = new GameCamera(handler);
 	}

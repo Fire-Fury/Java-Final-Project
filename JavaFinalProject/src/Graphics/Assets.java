@@ -15,6 +15,11 @@ public class Assets {
 	public static BufferedImage grassLowerCentralSide;
 	public static BufferedImage grassLowerRightCorner;
 	public static BufferedImage nullTile;
+	public static BufferedImage sandTile;
+	public static BufferedImage stoneTile;
+	public static BufferedImage plateauTile;
+	public static BufferedImage waterTile;
+	public static BufferedImage dirtTile;
 	
 	public static void init()
 	{
@@ -31,6 +36,11 @@ public class Assets {
 		grassLowerRightCorner = sheetA.crop(2*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		
 		nullTile = sheetA.crop(4*LENGTH, 0, LENGTH, LENGTH);
+		sandTile = sheetA.crop(3*LENGTH, 1*LENGTH, LENGTH, LENGTH);
+		stoneTile = sheetA.crop(4*LENGTH, 1*LENGTH, LENGTH, LENGTH);
+		dirtTile = sheetA.crop(5*LENGTH, 0, LENGTH, LENGTH);
+		plateauTile = sheetA.crop(3*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		waterTile = sheetA.crop(4*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		
 	}
 }

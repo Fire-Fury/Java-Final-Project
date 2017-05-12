@@ -16,6 +16,11 @@ public class Tile {
 	
 	public static Tile grassCenterCenterCentral = new GrassCentralCentralCenter(0);
 	public static Tile nullTile = new NullTile(1);
+	public static Tile waterTile = new WaterTile(2);
+	public static Tile stoneTile = new StoneTile(3);
+	public static Tile dirtTile = new DirtTile(4);
+	public static Tile sandTile = new SandTile(5);
+	public static Tile plateauTile = new PlateauTile(6);
 	
 	public Tile(BufferedImage texture, int id)
 	{
@@ -50,6 +55,11 @@ public class Tile {
 		{
 		case 0: return grassCenterCenterCentral;
 		case 1: return nullTile;
+		case 2: return waterTile;
+		case 3: return stoneTile;
+		case 4:	return dirtTile;
+		case 5: return sandTile;
+		case 6: return plateauTile;
 		default: return nullTile;
 		}
 	}

@@ -10,6 +10,7 @@ public class GameCamera {
 	private float lerp = 0.01f;
 	private double acceleration = 1.2539307407882264061;
 	private Handler handler;
+	private int moveSpeed = 5;
 	
 	public GameCamera(Handler handler)
 	{
@@ -60,8 +61,8 @@ public class GameCamera {
 			return;
 		}
 		
-		xGoal += dx;
-		yGoal += dy;
+		xGoal += dx * moveSpeed;
+		yGoal += dy * moveSpeed;
 	}
 	
 	public double lerp(float a, float b, double lerp)
