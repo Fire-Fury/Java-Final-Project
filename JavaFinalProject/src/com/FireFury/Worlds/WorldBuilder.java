@@ -5,20 +5,29 @@ import java.util.Random;
 import com.FireFury.Tiles.Tile;
 
 public class WorldBuilder {
-	Random gen = new Random();
+	private Random gen = new Random();
+	private long seed;
 
 	private double[][] heights = new double[513][513];
 	private int[][] worldMap = new int[heights.length][heights[0].length];
 	
 	public WorldBuilder() //True random generation
 	{
-		new WorldBuilder((long)(Math.random()*1000000000));
+		this.seed = (long) Math.random() * 1000000000;
+		gen.setSeed(seed);
+		heights[0][0] = gen.nextDouble();
+		heights[0][heights[0].length-1] = gen.nextDouble();
+		heights[heights.length-1][0] = gen.nextDouble();
+		heights[heights.length-1][heights[0].length-1] = gen.nextDouble();
 	}
 	
 	public WorldBuilder(long seed) //actual seeded generation
 	{
 		gen.setSeed(seed);
-		new WorldBuilder(gen.nextDouble(), gen.nextDouble(), gen.nextDouble(), gen.nextDouble());
+		heights[0][0] = gen.nextDouble();
+		heights[0][heights[0].length-1] = gen.nextDouble();
+		heights[heights.length-1][0] = gen.nextDouble();
+		heights[heights.length-1][heights[0].length-1] = gen.nextDouble();
 	}
 	
 	public WorldBuilder(double a, double b, double c, double d) //Non-specific constructor
@@ -124,7 +133,7 @@ public class WorldBuilder {
 		System.out.println("Top Right: " + heights[0][heights[0].length-1]);
 		System.out.println("Bottom Left: " + heights[heights.length-1][0]);
 		System.out.println("Bottom Right: " + heights[heights.length-1][heights[0].length-1]);
-		//DiamondStep(0, 0, heights[0].length-1, heights.length-1);
+		DiamondStep(0, 0, heights[0].length-1, heights.length-1);
 		return this;
 	}
 	
