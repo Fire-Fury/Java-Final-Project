@@ -27,6 +27,10 @@ public class WorldBuilder {
 		heights[0][heights[0].length-1] = c;
 		heights[heights.length-1][0] = b;
 		heights[heights.length-1][heights[0].length-1] = d;
+		System.out.println("Top Left: " + heights[0][0]);
+		System.out.println("Top Right: " + heights[0][heights[0].length-1]);
+		System.out.println("Bottom Left: " + heights[heights.length-1][0]);
+		System.out.println("Bottom Right: " + heights[heights.length-1][heights[0].length-1]);
 	}
 	
 	private void SquareStep(double C, int rX, int rY, int lX, int lY)
@@ -88,7 +92,7 @@ public class WorldBuilder {
 	
 	private double avg4(double a, double b, double c, double d)
 	{
-		double toReturn = (a + b + c + d)/4.0 + (gen.nextDouble()/5 - 0.1);
+		double toReturn = (a + b + c + d)/4.0 + (gen.nextDouble()/5 - 0.07);
 		if(toReturn > 1.0)
 		{
 			return 1.0;
@@ -102,7 +106,7 @@ public class WorldBuilder {
 	
 	private double avg3(double a, double b, double c)
 	{
-		double toReturn = (a + b + c)/3.0 + (gen.nextDouble()/5 - 0.1);
+		double toReturn = (a + b + c)/3.0 + (gen.nextDouble()/5 - 0.07);
 		if(toReturn > 1.0)
 		{
 			return 1.0;
@@ -116,7 +120,11 @@ public class WorldBuilder {
 	
 	private WorldBuilder createHeightMap()
 	{
-		DiamondStep(0, 0, heights[0].length-1, heights.length-1);
+		System.out.println("Top Left: " + heights[0][0]);
+		System.out.println("Top Right: " + heights[0][heights[0].length-1]);
+		System.out.println("Bottom Left: " + heights[heights.length-1][0]);
+		System.out.println("Bottom Right: " + heights[heights.length-1][heights[0].length-1]);
+		//DiamondStep(0, 0, heights[0].length-1, heights.length-1);
 		return this;
 	}
 	
@@ -126,25 +134,29 @@ public class WorldBuilder {
 		{
 			for(int j = 0; j < heights[0].length; j++)
 			{
-				if(heights[i][j] < 0.15)
+				if(heights[i][j] < 0.1)
 				{
 					worldMap[i][j] = 2;
 				}
-				else if(heights[i][j] < 0.25)
+				else if(heights[i][j] < 0.2)
 				{
 					worldMap[i][j] = 5;
 				}
-				else if(heights[i][j] < 0.5)
+				else if(heights[i][j] < 0.4)
 				{
 					worldMap[i][j] = 0;
 				}
-				else if(heights[i][j] < 0.75)
+				else if(heights[i][j] < 0.8)
 				{
-					worldMap[i][j] = 4;
-				}
-				else if(heights[i][j] < 0.9)
-				{
-					worldMap[i][j] = 3;
+					int decider = gen.nextInt(2);
+					if(decider == 0)
+					{
+						worldMap[i][j] = 4;
+					}
+					else
+					{
+						worldMap[i][j] = 3;
+					}
 				}
 				else
 				{
@@ -155,10 +167,88 @@ public class WorldBuilder {
 		return this;
 	}
 	
+	public WorldBuilder smoothWorld(int times)
+	{
+		
+		for(int i = 0; i < times; i++)
+		{
+			for(int y = 0; y < worldMap.length; y++)
+			{
+				for(int x = 0; x < worldMap[0].length; x++)
+				{
+					int water = 0;
+					int sand = 0;
+					int grass = 0;
+					int plateau = 0;
+					int dirt = 0;
+					int stone = 0;
+					
+					for (int ox = -1; ox < 2; ox++) {
+						for (int oy = -1; oy < 2; oy++) {
+							if (x + ox < 0 || x + ox >= worldMap[0].length || y + oy < 0
+									|| y + oy >= worldMap.length)
+								continue;
+
+							if (worldMap[x + ox][y + oy] == 0)
+								grass++;
+							else if(worldMap[x + ox][y + oy] == 2)
+								water++;
+							else if(worldMap[x + ox][y + oy] == 3)
+								stone++;
+							else if(worldMap[x + ox][y + oy] == 4)
+								dirt++;
+							else if(worldMap[x + ox][y + oy] == 5)
+								sand++;
+							else if(worldMap[x + ox][y + oy] == 6)
+								plateau++;
+						}
+					}
+					int[] types = {water, sand, grass, dirt, stone, plateau};
+					int maxIndex = 0;
+					for(int p = 1; p < types.length; p++)
+					{
+						if(types[p] > types[maxIndex])
+						{
+							maxIndex = p;
+						}
+					}
+					
+					if(maxIndex == 0) // mostly water
+					{
+						worldMap[x][y] = 2;
+					}
+					else if(maxIndex == 1) // mostly sand
+					{
+						worldMap[x][y] = 5;
+					}
+					else if(maxIndex == 2) // mostly grass
+					{
+						worldMap[x][y] = 0;
+					}
+					else if(maxIndex == 3) // mostly dirt
+					{
+						worldMap[x][y] = 4;
+					}
+					else if(maxIndex == 4) // mostly stone
+					{
+						worldMap[x][y] = 3;
+					}
+					else if(maxIndex == 5) //mostly plateau
+					{
+						worldMap[x][y] = 6;
+					}
+				}
+			}
+		}
+		
+		return this;
+	}
+	
 	public WorldBuilder createWorld()
 	{
 		return createHeightMap()
-				.determineTiles();
+				.determineTiles()
+				.smoothWorld(1);
 	}
 	
 	public World build()

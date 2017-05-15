@@ -23,7 +23,8 @@ public class PlayScreen implements Screen{
 	public PlayScreen()
 	{
 		handler = new Handler(this);
-		worldBuilder = new WorldBuilder(0.99, 0.99, 0.99, 0.99); // seeded generation
+		worldBuilder = new WorldBuilder();
+		//worldBuilder = new WorldBuilder(0.99, 0.99, 0.99, 0.99); // seeded generation
 		//worldBuilder = new WorldBuilder(0.3, 0.5, 0.9, 0); // seeded generation
 		// Seed 12345 : largely an ocean world, not too interesting
 		world = worldBuilder.createWorld().build();
