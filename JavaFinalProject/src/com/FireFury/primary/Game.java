@@ -56,6 +56,7 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		frame.setVisible(true);
 		
 		frame.addKeyListener(this);
+		this.addKeyListener(this);
 		
 		currentScreen = new LoadingScreen();
 
