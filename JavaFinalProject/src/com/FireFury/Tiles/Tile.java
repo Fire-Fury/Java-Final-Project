@@ -6,8 +6,8 @@ import java.awt.image.BufferedImage;
 
 public class Tile {
 	//Class
-	public static final int TILEWIDTH = 64;
-	public static final int TILEHEIGHT = 64;
+	public static final int TILEWIDTH = 32;
+	public static final int TILEHEIGHT = 32;
 	
 	public static Tile[] tiles = new Tile[256];
 	

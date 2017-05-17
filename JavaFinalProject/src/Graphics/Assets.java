@@ -3,7 +3,7 @@ package Graphics;
 import java.awt.image.BufferedImage;
 
 public class Assets {
-	public static final int LENGTH = 64;
+	public static final int LENGTH = 32;
 	
 	public static BufferedImage grassUpperLeftCorner;
 	public static BufferedImage grassUpperCentralSide;
