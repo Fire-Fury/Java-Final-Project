@@ -23,8 +23,8 @@ public class GameCamera {
 	
 	public void update()
 	{
-		xPos += (xGoal - xPos) * lerp * Game.getUpdateDeltaTime() * acceleration;
-		yPos += (yGoal - yPos) * lerp * Game.getUpdateDeltaTime() * acceleration;
+		xPos += (xGoal - xPos) * lerp * (Game.getUpdateDeltaTime() * 0.75);
+		yPos += (yGoal - yPos) * lerp * (Game.getUpdateDeltaTime() * 0.75);
 		//System.out.println("xGoal: " + xGoal + "\tyGoal: " + yGoal); //Prints out xGoal and yGoals
 	}
 

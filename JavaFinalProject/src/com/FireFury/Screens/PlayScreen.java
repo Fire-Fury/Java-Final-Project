@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 
+import com.FireFury.GUI.GuiManager;
 import com.FireFury.Tiles.Tile;
 import com.FireFury.Utils.GameCamera;
 import com.FireFury.Utils.Handler;
@@ -19,6 +20,7 @@ public class PlayScreen implements Screen{
 	private GameCamera camera;
 	private Handler handler;
 	private WorldBuilder worldBuilder;
+	private GuiManager guiManager;
 	
 	public PlayScreen()
 	{
@@ -30,11 +32,14 @@ public class PlayScreen implements Screen{
 		world = worldBuilder.createWorld().build();
 		handler.setWorld(world);
 		camera = new GameCamera(handler);
+		guiManager = new GuiManager();
+		
 	}
 
 	@Override
 	public void update() {
 		camera.update();
+		guiManager.update();
 	}
 
 	@Override
@@ -60,6 +65,8 @@ public class PlayScreen implements Screen{
 		
 		g2d.translate(-camera.getX(), -camera.getY());
 		//Camera is at original position
+		//Do things here if you want it to remain static even while player is moving.
+		guiManager.render(g2d);
 	}
 
 	@Override
