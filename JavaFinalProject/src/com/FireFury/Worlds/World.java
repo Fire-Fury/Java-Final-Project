@@ -38,7 +38,7 @@ public class World {
 		{
 			for(int x = 0; x < width; x++)
 			{
-				tiles[x][y] = Utils.parseInt(tokens[(x+y * width) + 4]);
+				tiles[y][x] = Utils.parseInt(tokens[(x+y * width) + 4]);
 			}
 		}
 	}
@@ -46,14 +46,14 @@ public class World {
 	public Tile tileAt(int x, int y)
 	{
 		if(x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length)
-			return Tile.getTile(tiles[x][y]);
+			return Tile.getTile(tiles[y][x]);
 		else
 			return null;
 	}
 	
 	public boolean tileExistsAt(int x, int y)
 	{
-		if(tileAt(x, y) == null)
+		if(tileAt(y, x) == null)
 		{
 			return false;
 		}

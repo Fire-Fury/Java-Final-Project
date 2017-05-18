@@ -13,12 +13,10 @@ public class WorldBuilder {
 	
 	public WorldBuilder() //True random generation
 	{
-		this.seed = (long) Math.random() * 1000000000;
-		gen.setSeed(seed);
-		heights[0][0] = gen.nextDouble();
-		heights[0][heights[0].length-1] = gen.nextDouble();
-		heights[heights.length-1][0] = gen.nextDouble();
-		heights[heights.length-1][heights[0].length-1] = gen.nextDouble();
+		heights[0][0] = Math.random();
+		heights[0][heights[0].length-1] = Math.random();
+		heights[heights.length-1][0] = Math.random();
+		heights[heights.length-1][heights[0].length-1] = Math.random();
 	}
 	
 	public WorldBuilder(long seed) //actual seeded generation
@@ -51,9 +49,9 @@ public class WorldBuilder {
 			}
 			else
 			{
-				heights[rY][(rX+lX)/2] = avg4(heights[rY][rX], heights[rY][lX], heights[rY+Math.abs((lY-rY)/2)][(rX+lX)/2], C);
+				heights[rY][(rX+lX)/2] = avg4(heights[rY][rX], heights[rY][lX], heights[rY-Math.abs((lY-rY)/2)][(rX+lX)/2], C);
 			}
-			//R Side
+			//L Side
 			if(rX == 0)
 			{
 				heights[(rY+lY)/2][rX] = avg3(heights[rY][rX], heights[lY][rX], C);
@@ -69,7 +67,7 @@ public class WorldBuilder {
 			}
 			else
 			{
-				heights[lY][(rX+lX)/2] = avg4(heights[lY][rX], heights[lY][lX], heights[lY-Math.abs((lY-rY)/2)][(rX+lX)/2], C);
+				heights[lY][(rX+lX)/2] = avg4(heights[lY][rX], heights[lY][lX], heights[lY+Math.abs((lY-rY)/2)][(rX+lX)/2], C);
 			}
 			//L Side
 			if(lX == heights[0].length-1)
@@ -90,7 +88,7 @@ public class WorldBuilder {
 	
 	private void DiamondStep(int rX, int rY, int lX, int lY)
 	{
-		if(Math.abs(lX-rX) <= 1)
+		if(Math.abs(lX-rX) <= 1 || Math.abs(lY-rY) <= 1)
 		{
 			return;
 		}
@@ -101,7 +99,7 @@ public class WorldBuilder {
 	
 	private double avg4(double a, double b, double c, double d)
 	{
-		double toReturn = (a + b + c + d)/4.0 + (gen.nextDouble()/5 - 0.07);
+		double toReturn = (a + b + c + d)/4.0 + (Math.random()/5 - 0.08);
 		if(toReturn > 1.0)
 		{
 			return 1.0;
@@ -115,7 +113,7 @@ public class WorldBuilder {
 	
 	private double avg3(double a, double b, double c)
 	{
-		double toReturn = (a + b + c)/3.0 + (gen.nextDouble()/5 - 0.07);
+		double toReturn = (a + b + c)/3.0 + (Math.random()/5 - 0.08);
 		if(toReturn > 1.0)
 		{
 			return 1.0;
@@ -130,10 +128,10 @@ public class WorldBuilder {
 	private WorldBuilder createHeightMap()
 	{
 		System.out.println("Top Left: " + heights[0][0]);
-		System.out.println("Top Right: " + heights[0][heights[0].length-1]);
+		System.out.println("Top Right: " + heights[0][heights[0].length -1]);
 		System.out.println("Bottom Left: " + heights[heights.length-1][0]);
 		System.out.println("Bottom Right: " + heights[heights.length-1][heights[0].length-1]);
-		DiamondStep(0, 0, heights[0].length-1, heights.length-1);
+		DiamondStep(0, 0, heights.length-1, heights[0].length-1);
 		return this;
 	}
 	
@@ -143,29 +141,33 @@ public class WorldBuilder {
 		{
 			for(int j = 0; j < heights[0].length; j++)
 			{
-				if(heights[i][j] < 0.1)
+				if(heights[i][j] < 0.317) //.25
 				{
 					worldMap[i][j] = 2;
 				}
-				else if(heights[i][j] < 0.2)
+				else if(heights[i][j] < 0.442) //.37
 				{
 					worldMap[i][j] = 5;
 				}
-				else if(heights[i][j] < 0.4)
+				else if(heights[i][j] < 0.507) //.37
 				{
 					worldMap[i][j] = 0;
 				}
-				else if(heights[i][j] < 0.8)
+				else if(heights[i][j] < 0.575) //.587
 				{
-					int decider = gen.nextInt(2);
+					int decider = gen.nextInt(3);
 					if(decider == 0)
 					{
-						worldMap[i][j] = 4;
+						worldMap[i][j] = 0;
 					}
 					else
 					{
-						worldMap[i][j] = 3;
+						worldMap[i][j] = 4;
 					}
+				}
+				else if(heights[i][j] < 0.647) //.743
+				{
+						worldMap[i][j] = 3;
 				}
 				else
 				{
@@ -181,9 +183,9 @@ public class WorldBuilder {
 		
 		for(int i = 0; i < times; i++)
 		{
-			for(int y = 0; y < worldMap.length; y++)
+			for(int x = 0; x < worldMap.length; x++)
 			{
-				for(int x = 0; x < worldMap[0].length; x++)
+				for(int y = 0; y < worldMap[0].length; y++)
 				{
 					int water = 0;
 					int sand = 0;
@@ -257,7 +259,7 @@ public class WorldBuilder {
 	{
 		return createHeightMap()
 				.determineTiles()
-				.smoothWorld(1);
+				.smoothWorld(2);//1-2 is enough; try to see full screen
 	}
 	
 	public World build()
