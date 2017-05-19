@@ -145,15 +145,19 @@ public class WorldBuilder {
 				{
 					worldMap[i][j] = 2;
 				}
-				else if(heights[i][j] < 0.442) //.37
+				else if(heights[i][j] < 0.342) //.37
 				{
 					worldMap[i][j] = 5;
 				}
-				else if(heights[i][j] < 0.507) //.37
+				else if(heights[i][j] < 0.437) //.37
 				{
 					worldMap[i][j] = 0;
 				}
-				else if(heights[i][j] < 0.575) //.587
+				else if(heights[i][j] < 0.511)
+				{
+					worldMap[i][j] = 7;
+				}
+				else if(heights[i][j] < 0.545) //.587
 				{
 					int decider = gen.nextInt(3);
 					if(decider == 0)
@@ -165,7 +169,11 @@ public class WorldBuilder {
 						worldMap[i][j] = 4;
 					}
 				}
-				else if(heights[i][j] < 0.647) //.743
+				else if(heights[i][j] < 0.581)
+				{
+					worldMap[i][j] = 5;
+				}
+				else if(heights[i][j] < 0.657) //.743
 				{
 						worldMap[i][j] = 3;
 				}
@@ -193,7 +201,7 @@ public class WorldBuilder {
 					int plateau = 0;
 					int dirt = 0;
 					int stone = 0;
-					
+					int forest = 0;
 					for (int ox = -1; ox < 2; ox++) {
 						for (int oy = -1; oy < 2; oy++) {
 							if (x + ox < 0 || x + ox >= worldMap[0].length || y + oy < 0
@@ -212,9 +220,11 @@ public class WorldBuilder {
 								sand++;
 							else if(worldMap[x + ox][y + oy] == 6)
 								plateau++;
+							else if(worldMap[x + ox][y + oy] == 7)
+								forest++;
 						}
 					}
-					int[] types = {water, sand, grass, dirt, stone, plateau};
+					int[] types = {water, sand, grass, dirt, stone, plateau, forest};
 					int maxIndex = 0;
 					for(int p = 1; p < types.length; p++)
 					{
@@ -247,6 +257,10 @@ public class WorldBuilder {
 					else if(maxIndex == 5) //mostly plateau
 					{
 						worldMap[x][y] = 6;
+					}
+					else if(maxIndex == 9) //mostly plateau
+					{
+						worldMap[x][y] = 7;
 					}
 				}
 			}

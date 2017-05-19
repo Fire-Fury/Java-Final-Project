@@ -21,6 +21,7 @@ public class Tile {
 	public static Tile dirtTile = new DirtTile(4);
 	public static Tile sandTile = new SandTile(5);
 	public static Tile plateauTile = new PlateauTile(6);
+	public static Tile forestTile = new ForestTile(7);
 	
 	public Tile(BufferedImage texture, int id)
 	{
@@ -60,6 +61,7 @@ public class Tile {
 		case 4:	return dirtTile;
 		case 5: return sandTile;
 		case 6: return plateauTile;
+		case 7: return forestTile;
 		default: return nullTile;
 		}
 	}

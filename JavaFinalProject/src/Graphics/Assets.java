@@ -20,10 +20,12 @@ public class Assets {
 	public static BufferedImage plateauTile;
 	public static BufferedImage waterTile;
 	public static BufferedImage dirtTile;
+	public static BufferedImage forestTile;
 	
 	public static void init()
 	{
 		SpriteSheet sheetA = new SpriteSheet(ImageLoader.loadImage("/textures/TileSheetA.png"));
+		SpriteSheet sheetB = new SpriteSheet(ImageLoader.loadImage("/textures/ModernForestArt.png"));
 		
 		grassUpperLeftCorner = sheetA.crop(0, 0, LENGTH, LENGTH);
 		grassUpperCentralSide = sheetA.crop(1*LENGTH, 0, LENGTH, LENGTH);
@@ -41,6 +43,7 @@ public class Assets {
 		dirtTile = sheetA.crop(5*LENGTH, 0, LENGTH, LENGTH);
 		plateauTile = sheetA.crop(3*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		waterTile = sheetA.crop(4*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		forestTile = sheetB.crop(0, 0, LENGTH, LENGTH);
 		
 	}
 }
