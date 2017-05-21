@@ -3,14 +3,20 @@ package com.FireFury.entities;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
+import com.FireFury.Tiles.Tile;
+import com.FireFury.Worlds.World;
+
+
 public abstract class Entity {
-	private String name;
+	private World world;
+	private String type;
 	private BufferedImage texture;
 	private int x,y;
 	
-	public Entity(BufferedImage img, int x, int y, String name)
+	public Entity(World world, BufferedImage img, int x, int y, String type)
 	{
-		this.name = name;
+		this.world = world;
+		this.type = type;
 		this.x = x;
 		this.y = y;
 		this.texture = img;
@@ -19,8 +25,8 @@ public abstract class Entity {
 	public abstract void update();
 	public abstract void render(Graphics2D g2d);
 
-	public String getName() {
-		return name;
+	public String getType() {
+		return type;
 	}
 
 	public BufferedImage getTexture() {
@@ -33,6 +39,13 @@ public abstract class Entity {
 
 	public int getY() {
 		return y;
+	}
+	public int getPixelX() {
+		return x*Tile.TILEWIDTH;
+	}
+
+	public int getPixelY() {
+		return y*Tile.TILEHEIGHT;
 	}
 	
 	public void setX(int dx) {

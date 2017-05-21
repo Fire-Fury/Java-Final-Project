@@ -58,6 +58,9 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 		frame.addKeyListener(this);
 		this.addKeyListener(this);
 		
+		frame.addMouseListener(this);
+		this.addMouseListener(this);
+		
 		currentScreen = new LoadingScreen();
 
 		Assets.init();
@@ -259,7 +262,11 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void keyTyped(KeyEvent e) {}
 	@Override
-	public void mouseClicked(MouseEvent e) { }
+	public void mouseClicked(MouseEvent e) { 
+		System.out.println("Mouse x: " + e.getX());
+		System.out.println("Mouse y: " + e.getY());
+		currentScreen.respondToUserInput(e);
+	}
 	@Override
 	public void mouseEntered(MouseEvent e) { }
 	@Override
@@ -267,6 +274,6 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	@Override
 	public void mousePressed(MouseEvent e) { }
 	@Override
-	public void mouseReleased(MouseEvent ae) { }
+	public void mouseReleased(MouseEvent e) { }
 
 }

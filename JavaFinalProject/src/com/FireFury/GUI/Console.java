@@ -16,16 +16,6 @@ public class Console extends GuiComponent{
 		super(x, y);
 		this.width = width;
 		this.height = height;
-		notify("This is a test");
-		notify("This is another test");
-		notify("This is a test");
-		notify("This is another test");
-		notify("This is a test");
-		notify("This is another test");
-		notify("This is a test");
-		notify("This is another test");
-		notify("This is a test");
-		notify("This is another test");
 	}
 	
 	public void update()
@@ -37,8 +27,10 @@ public class Console extends GuiComponent{
 	{
 		g2d.setColor(Color.GRAY);
 		g2d.fillRoundRect(getRelativeScreenX(), getRelativeScreenY(), width, height, 10, 10);
+		g2d.setColor(Color.BLACK);
+		g2d.drawRoundRect(getRelativeScreenX(), getRelativeScreenY(), width, height, 10, 10);
 		
-		g2d.setFont(new Font("Sans-Serif", Font.PLAIN, 18));
+		g2d.setFont(new Font("Sans-Serif", Font.PLAIN, 16));
 		g2d.setColor(Color.WHITE);
 		for(int i = 0; i < messages.size(); i++)
 		{

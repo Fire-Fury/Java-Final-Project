@@ -99,7 +99,7 @@ public class WorldBuilder {
 	
 	private double avg4(double a, double b, double c, double d)
 	{
-		double toReturn = (a + b + c + d)/4.0 + (Math.random()/5 - 0.08);
+		double toReturn = (a + b + c + d)/4.0 + (gen.nextDouble()/5 - 0.08);
 		if(toReturn > 1.0)
 		{
 			return 1.0;
@@ -113,7 +113,7 @@ public class WorldBuilder {
 	
 	private double avg3(double a, double b, double c)
 	{
-		double toReturn = (a + b + c)/3.0 + (Math.random()/5 - 0.08);
+		double toReturn = (a + b + c)/3.0 + (gen.nextDouble()/5 - 0.08);
 		if(toReturn > 1.0)
 		{
 			return 1.0;
@@ -278,7 +278,7 @@ public class WorldBuilder {
 	
 	public World build()
 	{
-		return new World(worldMap);
+		return new World(worldMap, gen);
 	}
 	
 }

@@ -22,10 +22,13 @@ public class Assets {
 	public static BufferedImage dirtTile;
 	public static BufferedImage forestTile;
 	
+	public static BufferedImage colonist1;
+	
 	public static void init()
 	{
 		SpriteSheet sheetA = new SpriteSheet(ImageLoader.loadImage("/textures/TileSheetA.png"));
 		SpriteSheet sheetB = new SpriteSheet(ImageLoader.loadImage("/textures/ModernForestArt.png"));
+		SpriteSheet character1 = new SpriteSheet(ImageLoader.loadImage("/textures/Char1.png"));
 		
 		grassUpperLeftCorner = sheetA.crop(0, 0, LENGTH, LENGTH);
 		grassUpperCentralSide = sheetA.crop(1*LENGTH, 0, LENGTH, LENGTH);
@@ -44,6 +47,8 @@ public class Assets {
 		plateauTile = sheetA.crop(3*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		waterTile = sheetA.crop(4*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		forestTile = sheetB.crop(0, 0, LENGTH, LENGTH);
+		
+		colonist1 = character1.crop(0, 0, LENGTH, LENGTH);
 		
 	}
 }

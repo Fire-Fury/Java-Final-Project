@@ -14,8 +14,10 @@ public class GuiManager {
 	{
 		this.guiComponents = new ArrayList<GuiComponent>();
 		
-		GuiComponent console = new Console(Game.getGameWidth()-384, Game.getGameHeight()-192, 384, 192);
+		GuiComponent console = new Console(Game.getGameWidth()-352, Game.getGameHeight()-192, 352, 192);
 		add(console);
+		GuiComponent clock = new Clock(Game.getGameWidth() - 352, 0, 352, 40);
+		add(clock);
 	}
 	
 	public void update()

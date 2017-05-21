@@ -1,46 +1,61 @@
 package com.FireFury.Worlds;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 import com.FireFury.Tiles.Tile;
 import com.FireFury.Utils.Utils;
+import com.FireFury.entities.Entity;
+import com.FireFury.entities.creatures.Creature;
 
 public class World {
 
 	private int width, height;
 	private int spawnX, spawnY;
 	private int[][] tiles;
+	//private Item[][] items;
+	private Random gen;
 	
-	public World(String path)
-	{
-		loadWorld(path);
-	}
+	private ArrayList<Creature> creatures;
 	
-	public World(int[][] tiles)
+	public World(int[][] tiles, Random gen)
 	{
 		this.tiles = tiles;
 		width = tiles[0].length;
 		height = tiles.length;
+		creatures = new ArrayList<Creature>();
+		this.gen = gen;
 	}
 	
-	
-	private void loadWorld(String path)
+	public void updateEntities()
 	{
-		String file = Utils.loadFileAsString(path);
-		String[] tokens = file.split("\\s+");
-		
-		width = Utils.parseInt(tokens[0]);
-		height = Utils.parseInt(tokens[1]);
-		spawnX = Utils.parseInt(tokens[2]);
-		spawnY = Utils.parseInt(tokens[3]);
-		
-		tiles = new int[width][height];
-		
-		for(int y = 0; y < height; y++)
+		for(Creature c: creatures)
 		{
-			for(int x = 0; x < width; x++)
-			{
-				tiles[y][x] = Utils.parseInt(tokens[(x+y * width) + 4]);
-			}
+			c.update();
 		}
+	}
+	
+	public void addAtEmptyLocation(Creature c)
+	{
+		int x,y;
+		do
+		{
+			x = (int)(gen.nextDouble() * width);
+			y = (int)(gen.nextDouble() * height);
+		}while(tileAt(x, y).equals(Tile.waterTile) || tileAt(x, y).equals(Tile.plateauTile) || creatureAt(x,y) != null);
+		
+		c.setX(x);
+		c.setY(y);
+		creatures.add(c);
+		
+	}
+	
+	public Creature creatureAt(int x, int y){
+		for (Creature c : creatures){
+			if (c.getX() == x && c.getY() == y)
+				return c;
+		}
+		return null;
 	}
 	
 	public Tile tileAt(int x, int y)
@@ -78,5 +93,19 @@ public class World {
 	public int getPixelHeight()
 	{
 		return height*Tile.TILEHEIGHT;
+	}
+	
+	public int getNumberOfColonists()
+	{
+		int total = 0;
+		for(Creature c: creatures)
+		{
+			if(c.getType().equals("colonist"))
+			{
+				total++;
+			}
+		}
+		
+		return total;
 	}
 }

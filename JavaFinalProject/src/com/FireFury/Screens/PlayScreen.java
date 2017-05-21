@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import com.FireFury.GUI.GuiManager;
 import com.FireFury.Tiles.Tile;
@@ -12,6 +13,9 @@ import com.FireFury.Utils.GameCamera;
 import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
 import com.FireFury.Worlds.WorldBuilder;
+import com.FireFury.entities.EntityFactory;
+import com.FireFury.entities.creatures.Colonist;
+import com.FireFury.entities.creatures.Creature;
 import com.FireFury.primary.Game;
 
 public class PlayScreen implements Screen{
@@ -21,11 +25,15 @@ public class PlayScreen implements Screen{
 	private Handler handler;
 	private WorldBuilder worldBuilder;
 	private GuiManager guiManager;
+	private Colonist firstColonist;
+	
+	private int selectedX = -1;
+	private int selectedY = -1;
 	
 	public PlayScreen()
 	{
 		handler = new Handler(this);
-		worldBuilder = new WorldBuilder();
+		worldBuilder = new WorldBuilder(12345);
 		//worldBuilder = new WorldBuilder(0.99, 0.99, 0.99, 0.99); // seeded generation
 		//worldBuilder = new WorldBuilder(0.3, 0.5, 0.9, 0); // seeded generation
 		// Seed 12345 : largely an ocean world, not too interesting
@@ -34,12 +42,41 @@ public class PlayScreen implements Screen{
 		camera = new GameCamera(handler);
 		guiManager = new GuiManager();
 		
+		EntityFactory factory = new EntityFactory(world);
+		createCreatures(factory);
+		createItems(factory);
+		
+		camera.focus(firstColonist.getPixelX(), firstColonist.getPixelY());
+	}
+	
+	public void createCreatures(EntityFactory factory)
+	{
+		firstColonist = factory.newColonist();
+	}
+	
+	public void createItems(EntityFactory factory)
+	{
+		
+	}
+	
+	public void selectTile(int x, int y)
+	{
+		if(world.creatureAt(x, y) != null)
+		{
+			
+		}
+		if(world.tileExistsAt(x, y))
+		{
+			selectedX = x;
+			selectedY = y;
+		}
 	}
 
 	@Override
 	public void update() {
 		camera.update();
 		guiManager.update();
+		world.updateEntities();
 	}
 
 	@Override
@@ -59,6 +96,17 @@ public class PlayScreen implements Screen{
 				if(world.tileExistsAt(i, j))
 				{
 					world.tileAt(i, j).render(g2d, i*Tile.TILEWIDTH, j*Tile.TILEHEIGHT);
+				}
+				Creature c = world.creatureAt(i, j);
+				if(c != null)
+				{
+					c.render(g2d);
+				}
+				
+				if(j + (int)(camera.getX()*Tile.TILEWIDTH) == selectedX && i + (int)(camera.getY()*Tile.TILEHEIGHT) == selectedY)
+				{
+					g2d.setColor(new Color(109, 242, 254));
+					g2d.fillRect(j*Tile.TILEWIDTH, i*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
 				}
 			}
 		}
@@ -106,6 +154,14 @@ public class PlayScreen implements Screen{
 	public GameCamera getCamera()
 	{
 		return camera;
+	}
+
+	@Override
+	public Screen respondToUserInput(MouseEvent e) {
+		selectTile((int)(e.getX()/Tile.TILEWIDTH) + (int)(camera.getX()/Tile.TILEWIDTH),
+				   (int)(e.getY()/Tile.TILEHEIGHT) + (int)(camera.getY()/Tile.TILEHEIGHT));
+		
+		return this;
 	}
 
 }

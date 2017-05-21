@@ -15,13 +15,21 @@ public class Tile {
 	private BufferedImage texture;
 	
 	public static Tile grassCenterCenterCentral = new GrassCentralCentralCenter(0);
+	public static final int GRASS_TILE = 0;
 	public static Tile nullTile = new NullTile(1);
+	public static final int NULL_TILE = 1;
 	public static Tile waterTile = new WaterTile(2);
+	public static final int WATER_TILE = 2;
 	public static Tile stoneTile = new StoneTile(3);
+	public static final int STONE_TILE = 3;
 	public static Tile dirtTile = new DirtTile(4);
+	public static final int DIRT_TILE = 4;
 	public static Tile sandTile = new SandTile(5);
+	public static final int SAND_TILE = 5;
 	public static Tile plateauTile = new PlateauTile(6);
+	public static final int PLATEAU_TILE = 6;
 	public static Tile forestTile = new ForestTile(7);
+	public static final int FOREST_TILE = 7;
 	
 	public Tile(BufferedImage texture, int id)
 	{
@@ -64,6 +72,15 @@ public class Tile {
 		case 7: return forestTile;
 		default: return nullTile;
 		}
+	}
+	
+	public boolean equals(Tile other)
+	{
+		if(this.id == other.getId())
+		{
+			return true;
+		}
+		return false;
 	}
 
 }

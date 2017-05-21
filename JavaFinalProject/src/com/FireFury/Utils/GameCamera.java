@@ -69,5 +69,11 @@ public class GameCamera {
 	{
 		return (a * lerp) + ((1.0 - lerp) * b);
 	}
+
+	public void focus(int x, int y) {
+		xGoal = x-(Game.getGameWidth()/2)-32;
+		yGoal = y-(Game.getGameHeight()/2)-32;
+		
+	}
 	
 }

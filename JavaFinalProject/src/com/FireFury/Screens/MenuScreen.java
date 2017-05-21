@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 import com.FireFury.primary.Game;
 
@@ -38,6 +39,12 @@ public class MenuScreen implements Screen{
 	public boolean after4Seconds() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public Screen respondToUserInput(MouseEvent e) {
+		// TODO Auto-generated method stub
+		return this;
 	}
 
 }
