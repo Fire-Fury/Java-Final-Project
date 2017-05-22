@@ -40,7 +40,7 @@ public class PlayScreen implements Screen{
 		world = worldBuilder.createWorld().build();
 		handler.setWorld(world);
 		camera = new GameCamera(handler);
-		guiManager = new GuiManager();
+		guiManager = new GuiManager(handler);
 		
 		EntityFactory factory = new EntityFactory(world);
 		createCreatures(factory);
@@ -63,10 +63,13 @@ public class PlayScreen implements Screen{
 	{
 		if(world.creatureAt(x, y) != null)
 		{
-			
+			//console says creature type: each has its own return based on general and specific details ie health; age; moves; hunger; good or bad etc
+			//creature.actions ~ buttons in console listed based on return of creature.actions(none is applicable)
+			//
 		}
 		if(world.tileExistsAt(x, y))
 		{
+			guiManager.getConsole().notify("Selected: " + x + "," + y);
 			selectedX = x;
 			selectedY = y;
 		}
@@ -103,7 +106,7 @@ public class PlayScreen implements Screen{
 					c.render(g2d);
 				}
 				
-				if(j + (int)(camera.getX()*Tile.TILEWIDTH) == selectedX && i + (int)(camera.getY()*Tile.TILEHEIGHT) == selectedY)
+				if(j == selectedX && i  == selectedY)
 				{
 					g2d.setColor(new Color(109, 242, 254));
 					g2d.fillRect(j*Tile.TILEWIDTH, i*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
@@ -158,8 +161,9 @@ public class PlayScreen implements Screen{
 
 	@Override
 	public Screen respondToUserInput(MouseEvent e) {
-		selectTile((int)(e.getX()/Tile.TILEWIDTH) + (int)(camera.getX()/Tile.TILEWIDTH),
-				   (int)(e.getY()/Tile.TILEHEIGHT) + (int)(camera.getY()/Tile.TILEHEIGHT));
+		selectTile((int)(e.getX()/Tile.TILEWIDTH) + (int)(-camera.getX()/Tile.TILEWIDTH),
+				   (int)(e.getY()/Tile.TILEHEIGHT) + (int)(-camera.getY()/Tile.TILEHEIGHT));
+		
 		
 		return this;
 	}

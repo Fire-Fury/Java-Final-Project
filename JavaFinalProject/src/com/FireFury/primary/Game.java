@@ -263,8 +263,8 @@ public class Game extends Canvas implements Runnable, KeyListener, MouseListener
 	public void keyTyped(KeyEvent e) {}
 	@Override
 	public void mouseClicked(MouseEvent e) { 
-		System.out.println("Mouse x: " + e.getX());
-		System.out.println("Mouse y: " + e.getY());
+		//System.out.println("Mouse x: " + e.getX());
+		//System.out.println("Mouse y: " + e.getY());
 		currentScreen.respondToUserInput(e);
 	}
 	@Override
