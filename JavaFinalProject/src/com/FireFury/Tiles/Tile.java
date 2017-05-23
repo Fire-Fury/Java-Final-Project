@@ -13,6 +13,7 @@ public class Tile {
 	
 	private int id;
 	private BufferedImage texture;
+	private String name;
 	
 	public static Tile grassCenterCenterCentral = new GrassCentralCentralCenter(0);
 	public static final int GRASS_TILE = 0;
@@ -31,11 +32,12 @@ public class Tile {
 	public static Tile forestTile = new ForestTile(7);
 	public static final int FOREST_TILE = 7;
 	
-	public Tile(BufferedImage texture, int id)
+	public Tile(BufferedImage texture, int id, String name)
 	{
 		this.texture = texture;
 		this.id = id;
 		tiles[id] = this;
+		this.name = name;
 	}
 	
 	public void update()
@@ -81,6 +83,11 @@ public class Tile {
 			return true;
 		}
 		return false;
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 
 }

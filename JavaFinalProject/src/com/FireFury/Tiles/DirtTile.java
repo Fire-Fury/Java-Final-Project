@@ -7,7 +7,7 @@ import Graphics.Assets;
 public class DirtTile extends Tile{
 
 	public DirtTile(int id) {
-		super(Assets.dirtTile, id);
+		super(Assets.dirtTile, id, "dirt");
 	}
 
 }

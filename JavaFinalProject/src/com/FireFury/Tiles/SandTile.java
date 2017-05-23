@@ -7,7 +7,7 @@ import Graphics.Assets;
 public class SandTile extends Tile{
 
 	public SandTile(int id) {
-		super(Assets.sandTile, id);
+		super(Assets.sandTile, id, "sand");
 	}
 
 }

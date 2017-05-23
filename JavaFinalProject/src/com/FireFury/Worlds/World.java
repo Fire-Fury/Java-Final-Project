@@ -18,6 +18,8 @@ public class World {
 	
 	private ArrayList<Creature> creatures;
 	
+	private int selectedTileTemp = 1;
+	
 	public World(int[][] tiles, Random gen)
 	{
 		this.tiles = tiles;
@@ -63,7 +65,7 @@ public class World {
 		if(x >= 0 && x < tiles[0].length && y >= 0 && y < tiles.length)
 			return Tile.getTile(tiles[y][x]);
 		else
-			return null;
+			return Tile.nullTile;
 	}
 	
 	public boolean tileExistsAt(int x, int y)

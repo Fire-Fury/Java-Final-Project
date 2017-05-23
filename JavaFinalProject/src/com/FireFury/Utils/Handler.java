@@ -28,5 +28,10 @@ public class Handler {
 	{
 		return world;
 	}
+	
+	public PlayScreen getPlayScreen()
+	{
+		return playScreen;
+	}
 
 }

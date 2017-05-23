@@ -27,8 +27,8 @@ public class PlayScreen implements Screen{
 	private GuiManager guiManager;
 	private Colonist firstColonist;
 	
-	private int selectedX = -1;
-	private int selectedY = -1;
+	private int selectedX = 0;
+	private int selectedY = 0;
 	
 	public PlayScreen()
 	{
@@ -40,7 +40,7 @@ public class PlayScreen implements Screen{
 		world = worldBuilder.createWorld().build();
 		handler.setWorld(world);
 		camera = new GameCamera(handler);
-		guiManager = new GuiManager();
+		guiManager = new GuiManager(handler);
 		
 		EntityFactory factory = new EntityFactory(world);
 		createCreatures(factory);
@@ -63,10 +63,13 @@ public class PlayScreen implements Screen{
 	{
 		if(world.creatureAt(x, y) != null)
 		{
-			
+			//console says creature type: each has its own return based on general and specific details ie health; age; moves; hunger; good or bad etc
+			//creature.actions ~ buttons in console listed based on return of creature.actions(none is applicable)
+			//
 		}
 		if(world.tileExistsAt(x, y))
 		{
+			guiManager.getConsole().notify("Selected: " + x + "," + y);
 			selectedX = x;
 			selectedY = y;
 		}
@@ -102,19 +105,20 @@ public class PlayScreen implements Screen{
 				{
 					c.render(g2d);
 				}
-				
-				if(j + (int)(camera.getX()*Tile.TILEWIDTH) == selectedX && i + (int)(camera.getY()*Tile.TILEHEIGHT) == selectedY)
-				{
-					g2d.setColor(new Color(109, 242, 254));
-					g2d.fillRect(j*Tile.TILEWIDTH, i*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
-				}
 			}
 		}
+		renderSelectedTile(g2d);
 		
 		g2d.translate(-camera.getX(), -camera.getY());
 		//Camera is at original position
 		//Do things here if you want it to remain static even while player is moving.
 		guiManager.render(g2d);
+	}
+	
+	public void renderSelectedTile(Graphics2D g2d)
+	{
+		g2d.setColor(new Color(109, 242, 254));
+		g2d.fillRect(selectedX*Tile.TILEWIDTH, selectedY*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
 	}
 
 	@Override
@@ -158,10 +162,21 @@ public class PlayScreen implements Screen{
 
 	@Override
 	public Screen respondToUserInput(MouseEvent e) {
-		selectTile((int)(e.getX()/Tile.TILEWIDTH) + (int)(camera.getX()/Tile.TILEWIDTH),
-				   (int)(e.getY()/Tile.TILEHEIGHT) + (int)(camera.getY()/Tile.TILEHEIGHT));
+		selectTile((int)(((e.getX() + camera.getTrueX())/Tile.TILEWIDTH)),
+				   (int)(((e.getY() + camera.getTrueY())/Tile.TILEHEIGHT)));
+		
 		
 		return this;
+	}
+	
+	public int getSelectedX()
+	{
+		return selectedX;
+	}
+	
+	public int getSelectedY()
+	{
+		return selectedY;
 	}
 
 }
