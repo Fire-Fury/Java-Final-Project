@@ -1,5 +1,6 @@
 package com.FireFury.Utils;
 
+import com.FireFury.Tiles.Tile;
 import com.FireFury.primary.Game;
 
 public class GameCamera {
@@ -74,6 +75,16 @@ public class GameCamera {
 		xGoal = x-(Game.getGameWidth()/2)-32;
 		yGoal = y-(Game.getGameHeight()/2)-32;
 		
+	}
+	
+	public float getTrueX()
+	{
+		return xPos;
+	}
+	
+	public float getTrueY()
+	{
+		return yPos;
 	}
 	
 }

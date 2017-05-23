@@ -19,10 +19,12 @@ public class GuiManager {
 		this.handler = handler;
 		this.guiComponents = new ArrayList<GuiComponent>();
 		
-		GuiComponent console = new Console(Game.getGameWidth()-352, Game.getGameHeight()-192, 352, 192);
+		GuiComponent console = new Console(Game.getGameWidth()-320, Game.getGameHeight()-192, 320, 192);
 		add(console);
-		GuiComponent clock = new Clock(Game.getGameWidth() - 352, 0, 352, 40);
+		GuiComponent clock = new Clock(Game.getGameWidth() - 320, 0, 320, 40);
 		add(clock);
+		GuiComponent dataDisplay = new TileDataDisplay(handler, Game.getGameWidth() - 320, 100, 320, 400);
+		add(dataDisplay);
 	}
 	
 	public void update()

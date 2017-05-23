@@ -6,7 +6,7 @@ public class GrassCentralCentralCenter extends Tile{
 	
 	public GrassCentralCentralCenter(int id)
 	{
-		super(Assets.grassCentralCentralCenter, id);
+		super(Assets.grassCentralCentralCenter, id, "grass");
 	}
 
 }
