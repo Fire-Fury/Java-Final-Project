@@ -3,6 +3,7 @@ package com.FireFury.entities;
 import com.FireFury.Worlds.World;
 import com.FireFury.entities.creatures.Colonist;
 import com.FireFury.entities.creatures.Creature;
+import com.FireFury.entities.creatures.Tree;
 
 public class EntityFactory {
 	
@@ -19,6 +20,14 @@ public class EntityFactory {
 		world.addAtEmptyLocation(colonist);
 
 		return colonist;
+	}
+	
+	public void addTrees()
+	{
+		Tree tree = new Tree(world, 0, 0, "Tree", 3, 10);
+		//add at certain instances of each tile
+		
+		
 	}
 
 }
