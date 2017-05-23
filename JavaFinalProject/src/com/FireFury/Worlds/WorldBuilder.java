@@ -149,7 +149,7 @@ public class WorldBuilder {
 				{
 					worldMap[i][j] = 5;
 				}
-				else if(heights[i][j] < 0.437) //.37
+				else if(heights[i][j] < 0.412) //.37
 				{
 					worldMap[i][j] = 0;
 				}
@@ -169,11 +169,11 @@ public class WorldBuilder {
 						worldMap[i][j] = 4;
 					}
 				}
-				else if(heights[i][j] < 0.581)
+				else if(heights[i][j] < 0.611)
 				{
 					worldMap[i][j] = 5;
 				}
-				else if(heights[i][j] < 0.657) //.743
+				else if(heights[i][j] < 0.667) //.743
 				{
 						worldMap[i][j] = 3;
 				}
@@ -202,8 +202,8 @@ public class WorldBuilder {
 					int dirt = 0;
 					int stone = 0;
 					int forest = 0;
-					for (int ox = -1; ox < 2; ox++) {
-						for (int oy = -1; oy < 2; oy++) {
+					for (int ox = -2; ox < 3; ox++) {
+						for (int oy = -2; oy < 3; oy++) {
 							if (x + ox < 0 || x + ox >= worldMap[0].length || y + oy < 0
 									|| y + oy >= worldMap.length)
 								continue;
@@ -258,7 +258,7 @@ public class WorldBuilder {
 					{
 						worldMap[x][y] = 6;
 					}
-					else if(maxIndex == 9) //mostly plateau
+					else if(maxIndex == 6) //mostly forest
 					{
 						worldMap[x][y] = 7;
 					}
@@ -273,7 +273,7 @@ public class WorldBuilder {
 	{
 		return createHeightMap()
 				.determineTiles()
-				.smoothWorld(2);//1-2 is enough; try to see full screen
+				.smoothWorld(1);//1-2 is enough; try to see full screen
 	}
 	
 	public World build()

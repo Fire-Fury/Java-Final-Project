@@ -71,9 +71,26 @@ public class GameCamera {
 	}
 
 	public void focus(int x, int y) {
-		xGoal = x-(Game.getGameWidth()/2)-32;
-		yGoal = y-(Game.getGameHeight()/2)-32;
+		if(x-(Game.getGameWidth()/2)-32 < 0)
+		{
+			xGoal = 0;
+		}
+		else
+		{
+			xGoal = x-(Game.getGameWidth()/2)-32;
+		}
+		if(y-(Game.getGameHeight()/2)-32 <0)
+		{
+			yGoal = 0;
+		}
+		else
+		{
+			yGoal = y-(Game.getGameHeight()/2)-32;
+		}
 		
+		update();
+		update();
+		update();
 	}
 	
 }
