@@ -141,7 +141,7 @@ public class WorldBuilder {
 		{
 			for(int j = 0; j < heights[0].length; j++)
 			{
-				if(heights[i][j] < 0.317) //.25
+				if(heights[i][j] < 0.307) //.25
 				{
 					worldMap[i][j] = 2;
 				}
@@ -149,15 +149,15 @@ public class WorldBuilder {
 				{
 					worldMap[i][j] = 5;
 				}
-				else if(heights[i][j] < 0.412) //.37
+				else if(heights[i][j] < 0.392) //.37
 				{
 					worldMap[i][j] = 0;
 				}
-				else if(heights[i][j] < 0.511)
+				else if(heights[i][j] < 0.481)
 				{
 					worldMap[i][j] = 7;
 				}
-				else if(heights[i][j] < 0.545) //.587
+				else if(heights[i][j] < 0.535) //.587
 				{
 					int decider = gen.nextInt(3);
 					if(decider == 0)
