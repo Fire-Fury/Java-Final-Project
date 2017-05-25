@@ -17,7 +17,7 @@ public class Colonist extends Creature{
 	private int lifeSpan;
 
 	public Colonist(World world, int x, int y, int attackVal, int defenseVal, int maxHp, String colonistName, int gender) {
-		super(world, Assets.colonist1, x, y, "colonist", attackVal, defenseVal, maxHp);
+		super(world, Assets.colonist1, x, y, "Colonist", attackVal, defenseVal, maxHp);
 		
 		this.colonistName = colonistName;
 		this.gender = gender;

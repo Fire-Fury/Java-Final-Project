@@ -72,9 +72,35 @@ public class GameCamera {
 	}
 
 	public void focus(int x, int y) {
-		xGoal = x-(Game.getGameWidth()/2)-32;
-		yGoal = y-(Game.getGameHeight()/2)-32;
+		if(x-(Game.getGameWidth()/2)-32 < 0)
+		{
+			xGoal = 0;
+		}
+		else if(x-(Game.getGameWidth()/2)-32 > handler.getWorld().getPixelWidth()-1600)
+		{
+			xGoal = handler.getWorld().getPixelWidth()-1600;
+		}
+		else
+		{
+			xGoal = x-(Game.getGameWidth()/2)-32;
+		}
 		
+		if(y-(Game.getGameHeight()/2)-32 < 0)
+		{
+			yGoal = 0;
+		}
+		else if(y-(Game.getGameHeight()/2)-32 > handler.getWorld().getPixelHeight()-900)
+		{
+			yGoal = handler.getWorld().getPixelHeight()-900;
+		}
+		else
+		{
+			yGoal = y-(Game.getGameHeight()/2)-32;
+		}
+		
+		update();
+		update();
+		update();
 	}
 	
 	public float getTrueX()
