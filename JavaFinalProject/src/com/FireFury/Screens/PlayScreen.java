@@ -27,8 +27,8 @@ public class PlayScreen implements Screen{
 	private GuiManager guiManager;
 	private Colonist firstColonist;
 	
-	private int selectedX = 0;
-	private int selectedY = 0;
+	private int selectedX = -1;
+	private int selectedY = -1;
 	
 	public PlayScreen()
 	{
@@ -117,8 +117,12 @@ public class PlayScreen implements Screen{
 	
 	public void renderSelectedTile(Graphics2D g2d)
 	{
-		g2d.setColor(new Color(109, 242, 254));
-		g2d.fillRect(selectedX*Tile.TILEWIDTH, selectedY*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
+		if(selectedX > 0 && selectedX < world.getWidth() && selectedY > 0 && selectedY < world.getHeight())
+		{
+			g2d.setColor(new Color(109, 242, 254));
+			g2d.fillRect(selectedX*Tile.TILEWIDTH, selectedY*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
+			
+		}
 	}
 
 	@Override
@@ -162,6 +166,8 @@ public class PlayScreen implements Screen{
 
 	@Override
 	public Screen respondToUserInput(MouseEvent e) {
+		guiManager.respondToUserInput(e);
+		
 		selectTile((int)(((e.getX() + camera.getTrueX())/Tile.TILEWIDTH)),
 				   (int)(((e.getY() + camera.getTrueY())/Tile.TILEHEIGHT)));
 		

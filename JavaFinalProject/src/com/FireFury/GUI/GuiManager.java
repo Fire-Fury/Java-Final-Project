@@ -1,6 +1,7 @@
 package com.FireFury.GUI;
 
 import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class GuiManager {
 		add(console);
 		GuiComponent clock = new Clock(Game.getGameWidth() - 320, 0, 320, 40);
 		add(clock);
-		GuiComponent dataDisplay = new TileDataDisplay(handler, Game.getGameWidth() - 320, 100, 320, 400);
+		GuiComponent dataDisplay = new TileDataDisplay(handler, Game.getGameWidth() - 320, 40, 320, 300);
 		add(dataDisplay);
 	}
 	
@@ -51,6 +52,14 @@ public class GuiManager {
 	public Console getConsole()
 	{
 		return (Console) guiComponents.get(GUI_CONSOLE);
+	}
+	
+	public void respondToUserInput(MouseEvent e)
+	{
+		for(GuiComponent comp: guiComponents)
+		{
+			comp.respondToUserInput(e);
+		}
 	}
 
 }
