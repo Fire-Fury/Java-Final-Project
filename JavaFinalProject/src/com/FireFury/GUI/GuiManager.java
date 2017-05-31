@@ -26,6 +26,8 @@ public class GuiManager {
 		add(clock);
 		GuiComponent dataDisplay = new TileDataDisplay(handler, Game.getGameWidth() - 320, 40, 320, 300);
 		add(dataDisplay);
+		GuiComponent actionMenu = new ActionMenu(handler, Game.getGameWidth()-320, 340, 320, 368);
+		add(actionMenu);
 	}
 	
 	public void update()

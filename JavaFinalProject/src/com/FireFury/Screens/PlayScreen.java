@@ -120,7 +120,7 @@ public class PlayScreen implements Screen{
 		if(selectedX > 0 && selectedX < world.getWidth() && selectedY > 0 && selectedY < world.getHeight())
 		{
 			g2d.setColor(new Color(109, 242, 254));
-			g2d.fillRect(selectedX*Tile.TILEWIDTH, selectedY*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
+			g2d.drawRect(selectedX*Tile.TILEWIDTH, selectedY*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
 			
 		}
 	}
