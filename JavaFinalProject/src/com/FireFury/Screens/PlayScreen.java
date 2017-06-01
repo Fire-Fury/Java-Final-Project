@@ -25,7 +25,7 @@ public class PlayScreen implements Screen{
 	private Handler handler;
 	private WorldBuilder worldBuilder;
 	private GuiManager guiManager;
-	private Colonist firstColonist;
+	private Colonist player;
 	
 	private int selectedX = -1;
 	private int selectedY = -1;
@@ -41,17 +41,20 @@ public class PlayScreen implements Screen{
 		handler.setWorld(world);
 		camera = new GameCamera(handler);
 		guiManager = new GuiManager(handler);
+		handler.setGuiManager(guiManager);
 		
-		EntityFactory factory = new EntityFactory(world);
+		EntityFactory factory = new EntityFactory(world, handler);
 		createCreatures(factory);
+		handler.setPlayer(player);
 		createItems(factory);
 		
-		camera.focus(firstColonist.getPixelX(), firstColonist.getPixelY());
+		camera.focus(player.getPixelX(), player.getPixelY());
 	}
 	
 	public void createCreatures(EntityFactory factory)
 	{
-		firstColonist = factory.newColonist();
+		player = factory.newColonist();
+		factory.addTrees();
 	}
 	
 	public void createItems(EntityFactory factory)
@@ -117,7 +120,7 @@ public class PlayScreen implements Screen{
 	
 	public void renderSelectedTile(Graphics2D g2d)
 	{
-		if(selectedX > 0 && selectedX < world.getWidth() && selectedY > 0 && selectedY < world.getHeight())
+		if(selectedX >= 0 && selectedX < world.getWidth() && selectedY >= 0 && selectedY < world.getHeight())
 		{
 			g2d.setColor(new Color(109, 242, 254));
 			g2d.drawRect(selectedX*Tile.TILEWIDTH, selectedY*Tile.TILEHEIGHT, Tile.TILEWIDTH, Tile.TILEHEIGHT);
@@ -134,19 +137,19 @@ public class PlayScreen implements Screen{
 		}
 		else if(keysPressed[KeyEvent.VK_UP])
 		{
-			camera.moveBy(0, -1);
+			player.moveBy(0, -1);
 		}
 		else if(keysPressed[KeyEvent.VK_DOWN])
 		{
-			camera.moveBy(0, 1);
+			player.moveBy(0, 1);
 		}
 		else if(keysPressed[KeyEvent.VK_LEFT])
 		{
-			camera.moveBy(-1, 0);
+			player.moveBy(-1, 0);
 		}
 		else if(keysPressed[KeyEvent.VK_RIGHT])
 		{
-			camera.moveBy(1, 0);
+			player.moveBy(1, 0);
 		}
 		
 		return this;
@@ -167,9 +170,11 @@ public class PlayScreen implements Screen{
 	@Override
 	public Screen respondToUserInput(MouseEvent e) {
 		guiManager.respondToUserInput(e);
-		
-		selectTile((int)(((e.getX() + camera.getTrueX())/Tile.TILEWIDTH)),
-				   (int)(((e.getY() + camera.getTrueY())/Tile.TILEHEIGHT)));
+		if(e.getX() < Game.getGameWidth()-320)
+		{
+			selectTile((int)(((e.getX() + camera.getTrueX())/Tile.TILEWIDTH)),
+					   (int)(((e.getY() + camera.getTrueY())/Tile.TILEHEIGHT)));
+		}
 		
 		
 		return this;

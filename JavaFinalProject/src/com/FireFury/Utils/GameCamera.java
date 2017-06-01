@@ -1,6 +1,7 @@
 package com.FireFury.Utils;
 
 import com.FireFury.Tiles.Tile;
+import com.FireFury.entities.creatures.Creature;
 import com.FireFury.primary.Game;
 
 public class GameCamera {
@@ -24,6 +25,7 @@ public class GameCamera {
 	
 	public void update()
 	{
+		focus(handler.getPlayer());
 		xPos += (xGoal - xPos) * lerp * (Game.getUpdateDeltaTime() * 0.75);
 		yPos += (yGoal - yPos) * lerp * (Game.getUpdateDeltaTime() * 0.75);
 		//System.out.println("xGoal: " + xGoal + "\tyGoal: " + yGoal); //Prints out xGoal and yGoals
@@ -70,6 +72,11 @@ public class GameCamera {
 	{
 		return (a * lerp) + ((1.0 - lerp) * b);
 	}
+	
+	public void focus(Creature c)
+	{
+		focus(c.getPixelX(), c.getPixelY());
+	}
 
 	public void focus(int x, int y) {
 		if(x-(Game.getGameWidth()/2)-32 < 0)
@@ -97,10 +104,6 @@ public class GameCamera {
 		{
 			yGoal = y-(Game.getGameHeight()/2)-32;
 		}
-		
-		update();
-		update();
-		update();
 	}
 	
 	public float getTrueX()

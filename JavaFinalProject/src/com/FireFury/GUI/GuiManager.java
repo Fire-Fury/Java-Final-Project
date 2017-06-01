@@ -56,6 +56,11 @@ public class GuiManager {
 		return (Console) guiComponents.get(GUI_CONSOLE);
 	}
 	
+	public Clock getClock()
+	{
+		return (Clock) guiComponents.get(GUI_CLOCK);
+	}
+	
 	public void respondToUserInput(MouseEvent e)
 	{
 		for(GuiComponent comp: guiComponents)

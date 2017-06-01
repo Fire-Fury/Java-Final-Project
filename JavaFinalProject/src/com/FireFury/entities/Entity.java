@@ -8,10 +8,11 @@ import com.FireFury.Worlds.World;
 
 
 public abstract class Entity {
-	private World world;
+	protected World world;
 	private String type;
 	private BufferedImage texture;
-	private int x,y;
+	protected int x;
+	protected int y;
 	
 	public Entity(World world, BufferedImage img, int x, int y, String type)
 	{

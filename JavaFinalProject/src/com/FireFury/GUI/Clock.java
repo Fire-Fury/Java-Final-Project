@@ -15,6 +15,8 @@ public class Clock extends GuiComponent{
 	private int hour;
 	private int minute;
 	
+	private int absoluteMinutes;
+	
 	private long lastTime;
 	private long now;
 
@@ -27,6 +29,7 @@ public class Clock extends GuiComponent{
 		this.day = 1;
 		this.hour = 0;
 		this.minute = 0;
+		absoluteMinutes = 0;
 		
 		lastTime = System.currentTimeMillis();
 	}
@@ -37,6 +40,7 @@ public class Clock extends GuiComponent{
 		if(now - lastTime >= 1000)
 		{
 			minute++;
+			absoluteMinutes++;
 			lastTime = now;
 		}
 		updateClockTimes();
@@ -77,6 +81,11 @@ public class Clock extends GuiComponent{
 			year++;
 			month = month % 12;
 		}
+	}
+	
+	public int getAbsoluteMinutes()
+	{
+		return absoluteMinutes;
 	}
 
 }
