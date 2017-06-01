@@ -43,7 +43,7 @@ public class PlayScreen implements Screen{
 		guiManager = new GuiManager(handler);
 		handler.setGuiManager(guiManager);
 		
-		EntityFactory factory = new EntityFactory(world, handler);
+		EntityFactory factory = new EntityFactory(world);
 		createCreatures(factory);
 		handler.setPlayer(player);
 		createItems(factory);

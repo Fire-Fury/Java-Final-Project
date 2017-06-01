@@ -21,6 +21,12 @@ public class Assets {
 	public static BufferedImage waterTile;
 	public static BufferedImage dirtTile;
 	public static BufferedImage forestTile;
+	public static BufferedImage forestTreeTile;
+	public static BufferedImage sandTreeTile;
+	public static BufferedImage dirtTreeTile;
+	public static BufferedImage stoneTreeTile;
+	public static BufferedImage mountainTreeTile;
+	public static BufferedImage grassTreeTile;
 	
 	public static BufferedImage colonist1;
 	public static BufferedImage tree;
@@ -31,6 +37,7 @@ public class Assets {
 		SpriteSheet sheetB = new SpriteSheet(ImageLoader.loadImage("/textures/ModernForestArt.png"));
 		SpriteSheet character1 = new SpriteSheet(ImageLoader.loadImage("/textures/Char1.png"));
 		SpriteSheet treeSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Tree.png"));
+		SpriteSheet spriteSheetF = new SpriteSheet(ImageLoader.loadImage("/textures/SpriteSheetF.png"));
 		
 		grassUpperLeftCorner = sheetA.crop(0, 0, LENGTH, LENGTH);
 		grassUpperCentralSide = sheetA.crop(1*LENGTH, 0, LENGTH, LENGTH);
@@ -49,6 +56,14 @@ public class Assets {
 		plateauTile = sheetA.crop(3*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		waterTile = sheetA.crop(4*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		forestTile = sheetB.crop(0, 0, LENGTH, LENGTH);
+		
+		forestTreeTile = sheetA.crop(7*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		sandTreeTile = spriteSheetF.crop(6*LENGTH, 0, LENGTH, LENGTH);
+		dirtTreeTile = spriteSheetF.crop(6*LENGTH, 1*LENGTH, LENGTH, LENGTH);
+		stoneTreeTile = spriteSheetF.crop(6*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		mountainTreeTile = spriteSheetF.crop(7*LENGTH, 1*LENGTH, LENGTH, LENGTH);
+		grassTreeTile = spriteSheetF.crop(7*LENGTH, 0, LENGTH, LENGTH);
+		
 		
 		colonist1 = character1.crop(0, 0, LENGTH, LENGTH);
 		tree = treeSheet.crop(0, 0, LENGTH, LENGTH);

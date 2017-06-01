@@ -77,6 +77,11 @@ public class World {
 		return true;
 	}
 	
+	public void replaceTile(int replacement, int x, int y)
+	{
+		tiles[y][x] = replacement;
+	}
+	
 	public int getWidth()
 	{
 		return width;

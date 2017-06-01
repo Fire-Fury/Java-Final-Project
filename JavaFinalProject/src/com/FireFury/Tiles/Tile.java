@@ -31,6 +31,11 @@ public class Tile {
 	public static final int PLATEAU_TILE = 6;
 	public static Tile forestTile = new ForestTile(7);
 	public static final int FOREST_TILE = 7;
+	public static Tile forestTreeTile = new ForestTreeTile(8);
+	public static final int FOREST_TREE_TILE = 8;
+	public static Tile dirtTreeTile = new DirtTreeTile(9);
+	public static final int DIRT_TREE_TILE = 9;
+	
 	
 	public Tile(BufferedImage texture, int id, String name)
 	{
@@ -72,6 +77,8 @@ public class Tile {
 		case 5: return sandTile;
 		case 6: return plateauTile;
 		case 7: return forestTile;
+		case 8: return forestTreeTile;
+		case 9: return dirtTreeTile;
 		default: return nullTile;
 		}
 	}
