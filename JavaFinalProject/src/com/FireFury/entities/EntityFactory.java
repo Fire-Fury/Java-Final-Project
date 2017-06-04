@@ -2,8 +2,9 @@ package com.FireFury.entities;
 
 import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
-import com.FireFury.entities.creatures.Colonist;
+//import com.FireFury.entities.creatures.Colonist;
 import com.FireFury.entities.creatures.Creature;
+import com.FireFury.entities.creatures.Player;
 import com.FireFury.entities.creatures.Tree;
 
 public class EntityFactory {
@@ -16,9 +17,9 @@ public class EntityFactory {
 		this.world = world;
 	}
 	
-	public Colonist newColonist()
+	public Player newColonist()
 	{
-		Colonist colonist = new Colonist(world, 0, 0, 10, 10, 100, "Ben Balster", Colonist.MALE, handler);
+		Player colonist = new Player(world, 0, 0, 10, 10, 100, "Ben Balster", Player.MALE, handler);
 		world.addAtEmptyLocation(colonist);
 
 		return colonist;

@@ -11,6 +11,9 @@ import com.FireFury.primary.Game;
 public class GuiManager {
 	public static final int GUI_CLOCK = 1;
 	public static final int GUI_CONSOLE = 0;
+	public static final int GUI_TILEDATADISPLAY = 2;
+	public static final int GUI_ACTIONMENU = 3;
+	public static final int GUI_STATSDISPLAY = 4;
 	
 	private List<GuiComponent> guiComponents;
 	private Handler handler;
@@ -28,6 +31,8 @@ public class GuiManager {
 		add(dataDisplay);
 		GuiComponent actionMenu = new ActionMenu(handler, Game.getGameWidth()-320, 340, 320, 368);
 		add(actionMenu);
+		GuiComponent statsDisplay = new Stats(0, 0, 160, 60, handler);
+		add(statsDisplay);
 	}
 	
 	public void update()
