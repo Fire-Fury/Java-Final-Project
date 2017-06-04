@@ -3,14 +3,15 @@ package com.FireFury.Utils;
 import com.FireFury.GUI.GuiManager;
 import com.FireFury.Screens.PlayScreen;
 import com.FireFury.Worlds.World;
-import com.FireFury.entities.creatures.Colonist;
+//import com.FireFury.entities.creatures.Colonist;
+import com.FireFury.entities.creatures.Player;
 import com.FireFury.primary.Game;
 
 public class Handler {
 	
 	private PlayScreen playScreen;
 	private World world;
-	private Colonist player;
+	private Player player;
 	private GuiManager guiManager;
 	
 	public Handler(PlayScreen playScreen)
@@ -38,12 +39,12 @@ public class Handler {
 		return playScreen;
 	}
 	
-	public void setPlayer(Colonist c)
+	public void setPlayer(Player c)
 	{
 		player = c;
 	}
 	
-	public Colonist getPlayer()
+	public Player getPlayer()
 	{
 		return player;
 	}

@@ -14,8 +14,9 @@ import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
 import com.FireFury.Worlds.WorldBuilder;
 import com.FireFury.entities.EntityFactory;
-import com.FireFury.entities.creatures.Colonist;
+//import com.FireFury.entities.creatures.Colonist;
 import com.FireFury.entities.creatures.Creature;
+import com.FireFury.entities.creatures.Player;
 import com.FireFury.primary.Game;
 
 public class PlayScreen implements Screen{
@@ -25,7 +26,7 @@ public class PlayScreen implements Screen{
 	private Handler handler;
 	private WorldBuilder worldBuilder;
 	private GuiManager guiManager;
-	private Colonist player;
+	private Player player;
 	
 	private int selectedX = -1;
 	private int selectedY = -1;
@@ -54,7 +55,7 @@ public class PlayScreen implements Screen{
 	public void createCreatures(EntityFactory factory)
 	{
 		player = factory.newColonist();
-		factory.addTrees();
+		//factory.addTrees();
 	}
 	
 	public void createItems(EntityFactory factory)
