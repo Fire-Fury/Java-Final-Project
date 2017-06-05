@@ -153,7 +153,7 @@ public class WorldBuilder {
 				{
 					worldMap[i][j] = 0;
 				}
-				else if(heights[i][j] < 0.481)
+				else if(heights[i][j] < 0.474)
 				{
 					worldMap[i][j] = 7;
 				}
@@ -268,7 +268,6 @@ public class WorldBuilder {
 		
 		return this;
 	}
-	
 	
 	public WorldBuilder createWorld()
 	{

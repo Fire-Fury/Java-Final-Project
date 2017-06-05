@@ -44,7 +44,7 @@ public class PlayScreen implements Screen{
 		guiManager = new GuiManager(handler);
 		handler.setGuiManager(guiManager);
 		
-		EntityFactory factory = new EntityFactory(world);
+		EntityFactory factory = new EntityFactory(world, handler);
 		createCreatures(factory);
 		handler.setPlayer(player);
 		createItems(factory);
@@ -55,7 +55,7 @@ public class PlayScreen implements Screen{
 	public void createCreatures(EntityFactory factory)
 	{
 		player = factory.newColonist();
-		//factory.addTrees();
+		factory.addTrees();
 	}
 	
 	public void createItems(EntityFactory factory)

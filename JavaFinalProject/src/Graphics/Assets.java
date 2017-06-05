@@ -27,6 +27,7 @@ public class Assets {
 	public static BufferedImage stoneTreeTile;
 	public static BufferedImage mountainTreeTile;
 	public static BufferedImage grassTreeTile;
+	public static BufferedImage waterTreeTile;
 	
 	public static BufferedImage colonist1;
 	public static BufferedImage tree;
@@ -58,11 +59,12 @@ public class Assets {
 		forestTile = sheetB.crop(0, 0, LENGTH, LENGTH);
 		
 		forestTreeTile = sheetA.crop(7*LENGTH, 2*LENGTH, LENGTH, LENGTH);
-		sandTreeTile = spriteSheetF.crop(6*LENGTH, 0, LENGTH, LENGTH);
-		dirtTreeTile = spriteSheetF.crop(6*LENGTH, 1*LENGTH, LENGTH, LENGTH);
-		stoneTreeTile = spriteSheetF.crop(6*LENGTH, 2*LENGTH, LENGTH, LENGTH);
-		mountainTreeTile = spriteSheetF.crop(7*LENGTH, 1*LENGTH, LENGTH, LENGTH);
-		grassTreeTile = spriteSheetF.crop(7*LENGTH, 0, LENGTH, LENGTH);
+		sandTreeTile = sheetA.crop(6*LENGTH, 0, LENGTH, LENGTH);
+		dirtTreeTile = sheetA.crop(6*LENGTH, 1*LENGTH, LENGTH, LENGTH);
+		stoneTreeTile = sheetA.crop(6*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		mountainTreeTile = sheetA.crop(7*LENGTH, 1*LENGTH, LENGTH, LENGTH);
+		grassTreeTile = sheetA.crop(5*LENGTH, 2*LENGTH, LENGTH, LENGTH);
+		waterTreeTile = sheetA.crop(7*LENGTH, 0, LENGTH, LENGTH);
 		
 		
 		colonist1 = character1.crop(0, 0, LENGTH, LENGTH);

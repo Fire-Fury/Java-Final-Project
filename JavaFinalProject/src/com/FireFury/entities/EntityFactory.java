@@ -1,6 +1,7 @@
 package com.FireFury.entities;
 
 import com.FireFury.Tiles.Tile;
+import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
 //import com.FireFury.entities.creatures.Colonist;
 import com.FireFury.entities.creatures.Creature;
@@ -10,22 +11,20 @@ import com.FireFury.entities.creatures.Tree;
 public class EntityFactory {
 	
 	private World world;
+	private Handler handler;
 	
-	public EntityFactory(World world)
+	public EntityFactory(World world, Handler handler)
 	{
 		this.world = world;
+		this.handler = handler;
 	}
 	
 	public Player newColonist()
 	{
-<<<<<<< HEAD
-		Colonist colonist = new Colonist(world, 0, 0, 10, 10, 100, "Ben Balster", Colonist.MALE, null);
-=======
-		Player colonist = new Player(world, 0, 0, 10, 10, 100, "Ben Balster", Player.MALE, handler);
->>>>>>> refs/remotes/origin/master
-		world.addAtEmptyLocation(colonist);
+		Player colonist1 = new Player(world, 0, 0, 10, 10, 100, "Player", Player.MALE, handler);
+		world.addAtEmptyLocation(colonist1);
 
-		return colonist;
+		return colonist1;
 	}
 	
 	public void addTrees()
@@ -34,29 +33,29 @@ public class EntityFactory {
 		{
 			for(int j = 0; j < world.getHeight(); j++)
 			{
-				if(world.tileAt(i, j).equals(Tile.dirtTile))
+				if(world.tileAt(i, j).equals(Tile.dirtTile) && Math.random() < .127)
+				{
+					world.replaceTile(12, i, j);
+				}
+				else if(world.tileAt(i, j).equals(Tile.forestTile) && Math.random() < .634)
+				{
+					world.replaceTile(15, i, j);
+				}
+				else if(world.tileAt(i, j).equals(Tile.plateauTile) && Math.random() < .174)
+				{
+					world.replaceTile(14, i, j);
+				}
+				else if(world.tileAt(i, j).equals(Tile.sandTile) && Math.random() < .0002)
+				{
+					world.replaceTile(13, i, j);
+				}
+				else if(world.tileAt(i, j).equals(Tile.grassCenterCenterCentral) && Math.random() < .182)
 				{
 					world.replaceTile(8, i, j);
 				}
-				else if(world.tileAt(i, j).equals(Tile.forestTile))
+				else if(world.tileAt(i, j).equals(Tile.stoneTile) && Math.random() < .138)
 				{
-					world.replaceTile(7, i, j);
-				}
-				else if(world.tileAt(i, j).equals(Tile.plateauTile))
-				{
-					
-				}
-				else if(world.tileAt(i, j).equals(Tile.sandTile))
-				{
-					
-				}
-				else if(world.tileAt(i, j).equals(Tile.grassCenterCenterCentral))
-				{
-					
-				}
-				else if(world.tileAt(i, j).equals(Tile.stoneTile))
-				{
-					
+					world.replaceTile(11, i, j);
 				}
 			}
 		}
