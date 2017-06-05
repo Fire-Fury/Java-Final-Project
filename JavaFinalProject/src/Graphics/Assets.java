@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 
 public class Assets {
 	public static final int LENGTH = 32;
+
+	public static final BufferedImage tree = null;
 	
 	public static BufferedImage grassUpperLeftCorner;
 	public static BufferedImage grassUpperCentralSide;
@@ -30,15 +32,13 @@ public class Assets {
 	public static BufferedImage waterTreeTile;
 	
 	public static BufferedImage colonist1;
-	public static BufferedImage tree;
+	public static BufferedImage cow;
 	
 	public static void init()
 	{
 		SpriteSheet sheetA = new SpriteSheet(ImageLoader.loadImage("/textures/TileSheetA.png"));
-		SpriteSheet sheetB = new SpriteSheet(ImageLoader.loadImage("/textures/ModernForestArt.png"));
 		SpriteSheet character1 = new SpriteSheet(ImageLoader.loadImage("/textures/Char1.png"));
-		SpriteSheet treeSheet = new SpriteSheet(ImageLoader.loadImage("/textures/Tree.png"));
-		SpriteSheet spriteSheetF = new SpriteSheet(ImageLoader.loadImage("/textures/SpriteSheetF.png"));
+		SpriteSheet cowSheet = new SpriteSheet(ImageLoader.loadImage("/textures/New Piskel.png"));
 		
 		grassUpperLeftCorner = sheetA.crop(0, 0, LENGTH, LENGTH);
 		grassUpperCentralSide = sheetA.crop(1*LENGTH, 0, LENGTH, LENGTH);
@@ -56,7 +56,7 @@ public class Assets {
 		dirtTile = sheetA.crop(5*LENGTH, 0, LENGTH, LENGTH);
 		plateauTile = sheetA.crop(3*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		waterTile = sheetA.crop(4*LENGTH, 2*LENGTH, LENGTH, LENGTH);
-		forestTile = sheetB.crop(0, 0, LENGTH, LENGTH);
+		forestTile = sheetA.crop(LENGTH*5, LENGTH*1, LENGTH, LENGTH);
 		
 		forestTreeTile = sheetA.crop(7*LENGTH, 2*LENGTH, LENGTH, LENGTH);
 		sandTreeTile = sheetA.crop(6*LENGTH, 0, LENGTH, LENGTH);
@@ -68,7 +68,6 @@ public class Assets {
 		
 		
 		colonist1 = character1.crop(0, 0, LENGTH, LENGTH);
-		tree = treeSheet.crop(0, 0, LENGTH, LENGTH);
-		
+		cow = cowSheet.crop(0, 0, LENGTH, LENGTH);
 	}
 }

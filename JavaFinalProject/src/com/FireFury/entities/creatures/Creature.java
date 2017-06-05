@@ -100,5 +100,14 @@ public class Creature extends Entity{
 		return level;
 	}
 	
+	public void moveBy(int dx, int dy)
+	{
+		if(x + dx < 0 || x + dx >= world.getWidth() || y + dy < 0 || y + dy >= world.getHeight())
+			return;
+		
+		x += dx;
+		y += dy;
+	}
+	
 
 }

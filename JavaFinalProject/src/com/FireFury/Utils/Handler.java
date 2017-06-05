@@ -58,9 +58,6 @@ public class Handler {
 		return guiManager;
 	}
 	
-	public int getTime()
-	{
-		return 1000;
-	}
+	
 
 }

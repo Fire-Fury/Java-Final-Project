@@ -56,6 +56,11 @@ public class PlayScreen implements Screen{
 	{
 		player = factory.newColonist();
 		factory.addTrees();
+		
+		for(int i = 0; i < 100; i++)
+		{
+			factory.newCow();
+		}
 	}
 	
 	public void createItems(EntityFactory factory)

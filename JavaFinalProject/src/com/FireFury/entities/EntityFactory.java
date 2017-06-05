@@ -3,6 +3,7 @@ package com.FireFury.entities;
 import com.FireFury.Tiles.Tile;
 import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
+import com.FireFury.entities.creatures.Cow;
 //import com.FireFury.entities.creatures.Colonist;
 import com.FireFury.entities.creatures.Creature;
 import com.FireFury.entities.creatures.Player;
@@ -25,6 +26,14 @@ public class EntityFactory {
 		world.addAtEmptyLocation(colonist1);
 
 		return colonist1;
+	}
+	
+	public Cow newCow()
+	{
+		Cow cow = new Cow(world, 0, 0, handler);
+		world.addAtEmptyLocation(cow);
+		
+		return cow;
 	}
 	
 	public void addTrees()
