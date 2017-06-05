@@ -22,18 +22,13 @@ public class Cow extends Creature {
 	
 	@Override
 	public void update() {
-		now = System.currentTimeMillis();
-		if(now - lastTime > 1000)
-		{
-			lastTime = now;
-			takeAction();
-		}
+		takeAction();
 	}
 	
 	public void takeAction()
 	{
 		double decider = Math.random();
-		if(decider < 0.7)
+		if(decider < 0.4)
 		{
 			wander();
 		}
@@ -49,7 +44,7 @@ public class Cow extends Creature {
 			dy = (int)(Math.random() * 3) - 1;
 		}while(world.tileAt(x+dx, y+dy).getId() == Tile.PLATEAU_TILE || world.tileAt(x+dx, y+dy).getId() == Tile.WATER_TILE);
 		
-		moveBy(dx, dy);
+		super.moveBy(dx, dy, 1000);
 	}
 
 }

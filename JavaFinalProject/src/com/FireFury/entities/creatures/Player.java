@@ -45,20 +45,8 @@ public class Player extends Creature{
 	
 	public void moveBy(int dx, int dy)
 	{
-		if(x + dx < 0 || x + dx >= world.getWidth() || y + dy < 0 || y + dy >= world.getHeight())
-			return;
-		
-		now = System.currentTimeMillis();
-		if(now - lastMoveTime > 100)
-		{
-			if(world.tileAt(x + dx, y + dy).getId() == Tile.WATER_TILE || world.tileAt(x + dx, y + dy).getId() == Tile.PLATEAU_TILE)
-				return;
-			
-			lastMoveTime = now;
-			x += dx;
-			y += dy;
+		if(super.moveBy(dx, dy, 100)) // 100 is the delta time
 			modifyFoodAmount(-1);
-		}
 	}
 	
 	public int getAge()
@@ -90,5 +78,15 @@ public class Player extends Creature{
 			food = maxFood;
 			handler.getGuiManager().getConsole().notify("Your stomach expanded");
 		}
+	}
+	
+	public void meleeAttack(Creature other)
+	{
+		int amt = (int)(this.getAttackValue()*Math.random()) - Math.max(0, (int)(0.5*Math.random()*other.getDefenseValue()));
+		other.modifyHp(-amt);
+		this.modifyHp((int)(-0.5*amt));
+		handler.getGuiManager().getConsole().notify("You attack a %s for %d", other.getType(), amt);
+		handler.getGuiManager().getConsole().notify("The %s attacks you for %d", other.getType(), (-0.5*amt));
+		
 	}
 }

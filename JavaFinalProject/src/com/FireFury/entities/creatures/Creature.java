@@ -15,6 +15,8 @@ public class Creature extends Entity{
 	protected int xp;
 	protected int maxXp;
 	protected int level;
+	
+	private long now, lastTime;
 
 	public Creature(World world, BufferedImage img, int x, int y, String type, int attackVal, int defenseVal, int maxHp) {
 		super(world, img, x, y, type);
@@ -22,6 +24,8 @@ public class Creature extends Entity{
 		this.defenseVal = defenseVal;
 		this.maxHp = maxHp;
 		this.hp = maxHp;
+		lastTime = 0;
+		now = System.currentTimeMillis();
 	}
 
 	@Override
@@ -100,14 +104,49 @@ public class Creature extends Entity{
 		return level;
 	}
 	
-	public void moveBy(int dx, int dy)
+	public boolean moveBy(int dx, int dy, int deltaTime)
 	{
 		if(x + dx < 0 || x + dx >= world.getWidth() || y + dy < 0 || y + dy >= world.getHeight())
-			return;
+			return false;
 		
-		x += dx;
-		y += dy;
+		now = System.currentTimeMillis();
+		if(now - lastTime > deltaTime)
+		{
+			//Can move
+			if(world.tileAt(x + dx, y + dy).getId() == Tile.WATER_TILE || world.tileAt(x + dx, y + dy).getId() == Tile.PLATEAU_TILE)
+				return false;
+			
+			Creature other = world.creatureAt(x + dx, y + dy);
+			if(other != null)
+			{
+				this.meleeAttack(other);
+				lastTime = now;
+				return true;
+			}
+			
+			lastTime = now;
+			x += dx;
+			y += dy;
+			return true;
+		}
+		return false;
 	}
 	
-
+	public void meleeAttack(Creature other)
+	{
+		int amt = (int)(this.getAttackValue()*Math.random()) - Math.max(0, (int)(0.5*Math.random()*other.getDefenseValue()));
+		other.modifyHp(-amt);
+		this.modifyHp((int)(-0.5*amt));
+		
+	}
+	
+	public int getAttackValue()
+	{
+		return attackVal;
+	}
+	
+	public int getDefenseValue()
+	{
+		return defenseVal;
+	}
 }
