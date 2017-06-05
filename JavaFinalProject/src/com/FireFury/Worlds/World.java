@@ -102,17 +102,14 @@ public class World {
 		return height*Tile.TILEHEIGHT;
 	}
 	
-	public int getNumberOfColonists()
+	public void removeCreature(Creature e)
 	{
-		int total = 0;
 		for(Creature c: creatures)
 		{
-			if(c.getType().equals("colonist"))
+			if(c == e)
 			{
-				total++;
+				creatures.remove(e);
 			}
 		}
-		
-		return total;
 	}
 }

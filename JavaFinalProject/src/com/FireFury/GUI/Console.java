@@ -81,9 +81,9 @@ public class Console extends GuiComponent{
 		}
 	}
 
-	public void notify(String str, Object... Params)
+	public void notify(String message, Object... params)
 	{
-		messages.add(0, str);
+		messages.add(0, String.format(message, params));
 		updateMessages();
 	}
 	

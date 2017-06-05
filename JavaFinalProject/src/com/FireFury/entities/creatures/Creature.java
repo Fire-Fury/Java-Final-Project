@@ -75,7 +75,7 @@ public class Creature extends Entity{
 		}
 		if(hp < 1)
 		{
-			//creature dies
+			die();
 		}
 	}
 	
@@ -134,10 +134,17 @@ public class Creature extends Entity{
 	
 	public void meleeAttack(Creature other)
 	{
-		int amt = (int)(this.getAttackValue()*Math.random()) - Math.max(0, (int)(0.5*Math.random()*other.getDefenseValue()));
-		other.modifyHp(-amt);
-		this.modifyHp((int)(-0.5*amt));
+		int amount = Math.max(0, this.getAttackVal() - other.getDefenseValue());
 		
+		amount = (int)(Math.random() * amount) + 1;
+		
+		other.modifyHp(-amount);
+	}
+	
+	public void die()
+	{
+		//leave corpse;
+		world.removeCreature(this);
 	}
 	
 	public int getAttackValue()

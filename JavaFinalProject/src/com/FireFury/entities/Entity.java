@@ -41,20 +41,23 @@ public abstract class Entity {
 	public int getY() {
 		return y;
 	}
+	
+	public void setX(int x)
+	{
+		this.x = x;
+	}
+	
+	public void setY(int y)
+	{
+		this.y = y;
+	}
+	
 	public int getPixelX() {
 		return x*Tile.TILEWIDTH;
 	}
 
 	public int getPixelY() {
 		return y*Tile.TILEHEIGHT;
-	}
-	
-	public void setX(int dx) {
-		x += dx;
-	}
-
-	public void setY(int dy) {
-		y += dy;
 	}
 	
 }

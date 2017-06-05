@@ -22,7 +22,7 @@ public class EntityFactory {
 	
 	public Player newColonist()
 	{
-		Player colonist1 = new Player(world, 0, 0, 10, 10, 100, "Player", Player.MALE, handler);
+		Player colonist1 = new Player(world, 0, 0, 20, 10, 100, "Player", Player.MALE, handler);
 		world.addAtEmptyLocation(colonist1);
 
 		return colonist1;
