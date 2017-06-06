@@ -7,6 +7,7 @@ import com.FireFury.Tiles.Tile;
 import com.FireFury.Utils.Utils;
 import com.FireFury.entities.Entity;
 import com.FireFury.entities.creatures.Creature;
+import com.FireFury.entities.items.Item;
 
 public class World {
 
@@ -17,6 +18,7 @@ public class World {
 	private Random gen;
 	
 	private ArrayList<Creature> creatures;
+	private ArrayList<Item> items; 
 	
 	private int selectedTileTemp = 1;
 	
@@ -26,6 +28,7 @@ public class World {
 		width = tiles[0].length;
 		height = tiles.length;
 		creatures = new ArrayList<Creature>();
+		items = new ArrayList<Item>();
 		this.gen = gen;
 	}
 	
@@ -34,6 +37,10 @@ public class World {
 		for(Creature c: creatures)
 		{
 			c.update();
+		}
+		for(Item i: items)
+		{
+			i.update();
 		}
 	}
 	
@@ -52,10 +59,27 @@ public class World {
 		
 	}
 	
+	public void addItemAtLocation(Item i, int x, int y)
+	{
+		i.setX(x);
+		i.setY(y);
+		
+		items.add(i);
+	}
+	
 	public Creature creatureAt(int x, int y){
 		for (Creature c : creatures){
 			if (c.getX() == x && c.getY() == y)
 				return c;
+		}
+		return null;
+	}
+	
+	public Item itemAt(int x, int y){
+		for(Item i: items){
+			if(i.getX() == x && i.getY() == y){
+				return i;
+			}
 		}
 		return null;
 	}
@@ -104,7 +128,8 @@ public class World {
 	
 	public void removeCreature(Creature e)
 	{
-		for(Creature c: creatures)
+		ArrayList<Creature> creaturesCopy = (ArrayList<Creature>) creatures.clone();
+		for(Creature c: creaturesCopy)
 		{
 			if(c == e)
 			{

@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import com.FireFury.Tiles.Tile;
 import com.FireFury.Worlds.World;
 import com.FireFury.entities.Entity;
+import com.FireFury.entities.items.CowCorpse;
 
 public class Creature extends Entity{
 	private int attackVal;
@@ -143,7 +144,7 @@ public class Creature extends Entity{
 	
 	public void die()
 	{
-		//leave corpse;
+		leaveCorpse();
 		world.removeCreature(this);
 	}
 	
@@ -155,5 +156,10 @@ public class Creature extends Entity{
 	public int getDefenseValue()
 	{
 		return defenseVal;
+	}
+	
+	public void leaveCorpse()
+	{
+		world.addItemAtLocation(new CowCorpse(world, getX(), getY()), getX(), getY());
 	}
 }

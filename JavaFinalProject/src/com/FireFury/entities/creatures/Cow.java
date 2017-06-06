@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import com.FireFury.Tiles.Tile;
 import com.FireFury.Utils.Handler;
 import com.FireFury.Worlds.World;
+import com.FireFury.entities.items.CowCorpse;
 
 import Graphics.Assets;
 
@@ -46,5 +47,7 @@ public class Cow extends Creature {
 		
 		super.moveBy(dx, dy, 1000);
 	}
+	
+		
 
 }

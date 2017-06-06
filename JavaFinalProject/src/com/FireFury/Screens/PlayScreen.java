@@ -17,6 +17,7 @@ import com.FireFury.entities.EntityFactory;
 //import com.FireFury.entities.creatures.Colonist;
 import com.FireFury.entities.creatures.Creature;
 import com.FireFury.entities.creatures.Player;
+import com.FireFury.entities.items.Item;
 import com.FireFury.primary.Game;
 
 public class PlayScreen implements Screen{
@@ -108,6 +109,11 @@ public class PlayScreen implements Screen{
 				if(world.tileExistsAt(i, j))
 				{
 					world.tileAt(i, j).render(g2d, i*Tile.TILEWIDTH, j*Tile.TILEHEIGHT);
+				}
+				Item item = world.itemAt(i, j);
+				if(item != null)
+				{
+					item.render(g2d);
 				}
 				Creature c = world.creatureAt(i, j);
 				if(c != null)

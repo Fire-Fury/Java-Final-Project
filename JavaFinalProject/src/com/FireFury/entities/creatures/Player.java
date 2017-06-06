@@ -89,5 +89,10 @@ public class Player extends Creature{
 		other.modifyHp(-amount);
 		handler.getGuiManager().getConsole().notify("You attack a %s for %d", other.getType(), amount);
 		
+		if(other.getHp() < 1)
+		{
+			handler.getGuiManager().getConsole().notify("You killed a %s", other.getType());
+		}
+		
 	}
 }
