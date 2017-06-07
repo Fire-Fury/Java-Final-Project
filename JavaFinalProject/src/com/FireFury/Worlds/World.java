@@ -34,13 +34,13 @@ public class World {
 	
 	public void updateEntities()
 	{
-		for(Creature c: creatures)
+		for(int i = 0; i < creatures.size(); i++)
 		{
-			c.update();
+			creatures.get(i).update();
 		}
-		for(Item i: items)
+		for(int i = 0; i < items.size(); i++)
 		{
-			i.update();
+			items.get(i).update();
 		}
 	}
 	
