@@ -33,12 +33,14 @@ public class Assets {
 	
 	public static BufferedImage colonist1;
 	public static BufferedImage cow;
+	public static BufferedImage cowCorpse;
 	
 	public static void init()
 	{
 		SpriteSheet sheetA = new SpriteSheet(ImageLoader.loadImage("/textures/TileSheetA.png"));
 		SpriteSheet character1 = new SpriteSheet(ImageLoader.loadImage("/textures/Char1.png"));
 		SpriteSheet cowSheet = new SpriteSheet(ImageLoader.loadImage("/textures/New Piskel.png"));
+		SpriteSheet cowCorpseSheet = new SpriteSheet(ImageLoader.loadImage("/textures/New Piskel (1).png"));
 		
 		grassUpperLeftCorner = sheetA.crop(0, 0, LENGTH, LENGTH);
 		grassUpperCentralSide = sheetA.crop(1*LENGTH, 0, LENGTH, LENGTH);
@@ -69,5 +71,6 @@ public class Assets {
 		
 		colonist1 = character1.crop(0, 0, LENGTH, LENGTH);
 		cow = cowSheet.crop(0, 0, LENGTH, LENGTH);
+		cowCorpse = cowCorpseSheet.crop(0, 0, LENGTH, LENGTH);
 	}
 }

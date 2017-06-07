@@ -9,7 +9,7 @@ import Graphics.Assets;
 public class CowCorpse extends Item{
 
 	public CowCorpse(World world, int x, int y) {
-		super(world, Assets.nullTile, x, y, "cow corpse");
+		super(world, Assets.cowCorpse, x, y, "cow corpse");
 		setFoodValue(100);
 	}
 	
