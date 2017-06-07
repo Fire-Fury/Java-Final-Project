@@ -40,7 +40,7 @@ public class World {
 		}
 		for(int i = 0; i < items.size(); i++)
 		{
-			items.get(i).update();
+			items.get(i).update(); 
 		}
 	}
 	
